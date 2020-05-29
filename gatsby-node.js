@@ -5,3 +5,6 @@
  */
 
 // You can delete this file if you're not using it
+
+require = require('esm')(module);
+module.exports = require('./gatsby-node.esm.js');
