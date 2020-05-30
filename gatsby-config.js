@@ -45,6 +45,22 @@ module.exports = {
                 name: 'fileFirebase',
             },
         },
+        {
+            resolve: `gatsby-plugin-material-ui`,
+            options: {
+                stylesProvider: {
+                    injectFirst: true,
+                },
+            },
+        },
+        `gatsby-background-image-es5`,
+        {
+            resolve: 'gatsby-background-image-es5',
+            options: {
+                // add your own characters to escape, replacing the default ':/'
+                specialChars: '/:',
+            },
+        },
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,

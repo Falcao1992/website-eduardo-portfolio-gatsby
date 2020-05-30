@@ -65,17 +65,16 @@ exports.sourceNodes = async ({
             originalId: result.uid,
             parent: result.uid,
             children: [],
-            //page: result.page,
             //title: result.title,
             //type:result.type,
             internal: {
                 type: "firebaseData",
+                description: result.key,
                 content: nodeContent,
                 contentDigest: createContentDigest(result)
             }
         });
         createNode(node);
-        console.log(node, "node")
     }
 };
 
@@ -142,21 +141,26 @@ exports.createSchemaCustomization = ({actions}) => {
 exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;
     const firebaseData = await graphql(`
-    query {
-        allFirebaseData {
-            distinct(field: key)
-        } 
-    }
-  `);
+        query {
+            allFirebaseData(filter: {type: {eq: "project"}}) {
+                distinct(field: key)
+                    nodes {
+                        projectTitle
+                        key
+                }
+            }
+        }
+    `);
+
 
     firebaseData.data.allFirebaseData.distinct.forEach(key => {
-        console.log(key, "key")
         createPage({
             path: key,
             component: path.resolve("./src/templates/project.js"),
             context: {
-                key: key
+                key: key,
+                projectTitle: firebaseData.data.allFirebaseData.nodes
             }
-        });
+        })
     });
 };

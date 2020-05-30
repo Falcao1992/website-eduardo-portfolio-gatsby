@@ -8,7 +8,6 @@ import styled from "styled-components";
 
 const Layout = (props) => {
 
-
     return (
         <ThemeProvider theme={theme}>
             <LayoutContainer>
@@ -34,7 +33,7 @@ const LayoutContainer = styled.div`
         font-size: 0.7rem;
     }
     
-    `;
+`;
 
 
 export default Layout

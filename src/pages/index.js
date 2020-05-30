@@ -1,22 +1,53 @@
 import React from "react"
-import { Link } from "gatsby"
-
+import {graphql} from "gatsby";
 import Layout from "../components/layout"
-import Image from "../components/image"
+//import HomeCategories from "../components/HomeCategories";
 import SEO from "../components/seo"
+import Header from "../components/Header";
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+
+//import Metrics from "../components/Metrics";
+
+
+const IndexPage = ({data}) => {
+
+    const bannerImageHome = data.banner.nodes[0].fileFirebase.childImageSharp.fluid;
+    const pageContext = {projectTitle:data.allProject.nodes};
+
+    console.log(pageContext)
+    console.log(bannerImageHome,"bannerImageHome")
+
+    return (
+        <Layout>
+            <SEO title="Accueil" />
+            <Header namePage={"home"} bannerImage={bannerImageHome} pageContext={pageContext}/>
+            {/*<Metrics/>*/}
+            {/*<HomeCategories/>*/}
+        </Layout>
+    )
+};
+
+export const query = graphql`
+    query {
+        banner: allFirebaseData(filter: {key: {eq: "home"}}) {
+            nodes {
+                fileFirebase {
+                    childImageSharp {
+                        fluid(maxWidth: 400, maxHeight: 250) {
+                            originalName
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
+            }
+        }
+        allProject: allFirebaseData(filter: {type: {eq: "project"}}) {
+            nodes {
+                projectTitle
+                key
+            }
+        }
+    }
+`;
 
 export default IndexPage
