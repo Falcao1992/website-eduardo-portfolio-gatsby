@@ -8,13 +8,12 @@ import SEO from "../components/seo";
 
 export default ({data, pageContext}) => {
     const {description, fileFirebase, key, projectTitle, sourceNetlify, uid, urlImage} = data.allFirebaseData.nodes[0];
-    console.log("data", data)
     const bannerImage = data.allFirebaseData.nodes[1].fileFirebase.childImageSharp.fluid;
 
     return (
         <Layout>
             <SEO title={projectTitle}/>
-            <Header namePage={key} bannerImage={bannerImage} pageContext={pageContext}/>
+            <Header namePage={key} bannerImage={bannerImage} allProjectsData={pageContext} slogan={projectTitle}/>
             <div key={uid}>
                 <ContainerImg>
                     <a href={urlImage} target="_blank" rel="noopener noreferrer">

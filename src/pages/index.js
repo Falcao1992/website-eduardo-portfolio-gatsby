@@ -12,15 +12,14 @@ import Header from "../components/Header";
 const IndexPage = ({data}) => {
 
     const bannerImageHome = data.banner.nodes[0].fileFirebase.childImageSharp.fluid;
-    const pageContext = {projectTitle:data.allProject.nodes};
-
-    console.log(pageContext)
-    console.log(bannerImageHome,"bannerImageHome")
+    const allProjectsData = {
+        allProjectsTitle : data.allProject.nodes
+    };
 
     return (
         <Layout>
             <SEO title="Accueil" />
-            <Header namePage={"home"} bannerImage={bannerImageHome} pageContext={pageContext}/>
+            <Header namePage={"home"} bannerImage={bannerImageHome} allProjectsData={allProjectsData} slogan={"Bienvenue sur mon Portfolio"}/>
             {/*<Metrics/>*/}
             {/*<HomeCategories/>*/}
         </Layout>

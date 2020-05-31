@@ -6,20 +6,9 @@ import Typewriter from 'typewriter-effect';
 import MenuIcon from '@material-ui/icons/Menu';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
-export default ({className, namePage, bannerImage, pageContext}) => {
+export default ({className, namePage, bannerImage, allProjectsData, slogan}) => {
 
     const [burgerIsActive, setBurgerIsActive] = useState(false);
-    console.log("namePage", namePage)
-    console.log(pageContext, "pagecontexte")
-
-    const slogan = {
-        home: "Envie de superbes vacances ?",
-        underworldLeFilm: "Des appartements tout confort !",
-        activity: "Vous ne vous ennuierez jamais !",
-        interest: "Des paysages magnifique !",
-        about: "S'informer avant de partir !",
-        contact: "Nous répondrons à toutes vos questions !",
-    };
 
     const handleBurger = (e) => {
         e.preventDefault();
@@ -35,7 +24,7 @@ export default ({className, namePage, bannerImage, pageContext}) => {
             onInit={(typewriter) => {
                 typewriter
                     .changeDelay(100)
-                    .typeString(`${slogan[namePage]}`)
+                    .typeString(`${slogan}`)
                     .pauseFor(2500)
                     .start();
             }}
@@ -47,7 +36,7 @@ export default ({className, namePage, bannerImage, pageContext}) => {
             <StyledBackgroundSection
                 Tag="header"
                 className={className}
-                fluid={bannerImage}
+                fluid={[`linear-gradient(180deg, rgba(0, 0, 0, 0.85), rgba(28, 28, 28, 0.2))`, bannerImage]}
                 alt={namePage}
             >
                 <NavStyled>
@@ -72,7 +61,7 @@ export default ({className, namePage, bannerImage, pageContext}) => {
                                 <MenuItem isActive={namePage === "home"}>Accueil</MenuItem>
                             }
                         </Link>
-                        {pageContext.projectTitle.map((project) => {
+                        {allProjectsData.allProjectsTitle.map((project) => {
                             return (
                                 <Link key={project.key} to={`/${project.key}`}><MenuItem isActive={namePage === project.key}>{project.projectTitle}</MenuItem></Link>
                             )
@@ -88,7 +77,6 @@ export default ({className, namePage, bannerImage, pageContext}) => {
                     </ContainerTypewriter>
                 </Baseline>
             </StyledBackgroundSection>
-
         </>
     )
 };
