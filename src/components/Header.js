@@ -42,40 +42,23 @@ export default ({className, namePage, bannerImage, allProjectsData, slogan}) => 
                 <NavStyled>
                     <ListItemIconStyled>
                         <MenuIcon fontSize="large" onClick={handleBurger}/>
-                        <Link to="/">
-                            {namePage === "home"
-                                ?
-                                <MenuItemH1 isActive={namePage === "home"}>Accueil</MenuItemH1>
-                                :
-                                <MenuItem isActive={namePage === "home"}>Accueil</MenuItem>
-                            }
-                        </Link>
+                        <Link to="/"><MenuItem isActive={namePage === "home"}>Accueil</MenuItem></Link>
                     </ListItemIconStyled>
 
                     <ContainerLink burgerIsActive={burgerIsActive}>
-                        <Link to="/">
-                            {namePage === "home"
-                                ?
-                                <MenuItemH1 isActive={namePage === "home"}>Accueil</MenuItemH1>
-                                :
-                                <MenuItem isActive={namePage === "home"}>Accueil</MenuItem>
-                            }
-                        </Link>
-                        {allProjectsData.allProjectsTitle.map((project) => {
-                            return (
-                                <Link key={project.key} to={`/${project.key}`}><MenuItem isActive={namePage === project.key}>{project.projectTitle}</MenuItem></Link>
-                            )
-                        })}
+                        <Link to="/"><MenuItem isActive={namePage === "home"}>Accueil</MenuItem></Link>
+                        <Link to={`/about`}><MenuItem isActive={namePage === "about"}>A propos de moi</MenuItem></Link>
+                        <Link to={`/skill`}><MenuItem isActive={namePage === "skill"}>Compétences</MenuItem></Link>
+                        <Link to={`/contact`}><MenuItem isActive={namePage === "contact"}>contact</MenuItem></Link>
                     </ContainerLink>
                 </NavStyled>
 
-                <Baseline>
-                    <small>Welcome</small>
-                    <strong>Pattaya</strong>
+                <BlockHeaderText>
+                    <small>Eduardo Lépine</small>
                     <ContainerTypewriter>
                         {sloganMatch()}
                     </ContainerTypewriter>
-                </Baseline>
+                </BlockHeaderText>
             </StyledBackgroundSection>
         </>
     )
@@ -84,11 +67,14 @@ export default ({className, namePage, bannerImage, allProjectsData, slogan}) => 
 const StyledBackgroundSection = styled(BackgroundImage)`
     color: ${props => props.theme.colors.primary};
     text-transform: uppercase;
-    height: 60vh;
-    @media only screen and (min-width:800px) {
-        height: auto;
+    height: 50vh;
+    @media only screen and (min-width:750px) {
+        height: 35vh;
     }
-    `;
+    @media only screen and (min-width:1200px) {
+        height: 50vh;
+    }
+`;
 
 const NavStyled = styled.nav`
     display: flex;
@@ -98,19 +84,19 @@ const NavStyled = styled.nav`
     line-height: 1.8;
     align-items: center;
     
-    @media only screen and (min-width:800px) {
+    @media only screen and (min-width:750px) {
         position: relative;
         flex-direction: row;
-        padding: 1rem 1.5rem;
+        padding: 0 1.5rem;
         & a:first-child {           
             margin-right: auto;
         }
     }
-    `;
+`;
 
 const ListItemIconStyled = styled(ListItemIcon)`
     color: ${props => props.theme.colors.primary};
-    background-color: rgba(0, 0, 0, 0.975);
+    background-color: ${props => props.theme.colors.dark};
     z-index: 1000;
     min-width: auto;
     padding: 0.5rem 1rem;
@@ -118,14 +104,15 @@ const ListItemIconStyled = styled(ListItemIcon)`
     display: flex;
     justify-content: space-between;
     position: fixed;
-    @media only screen and (min-width:800px) {
+    @media only screen and (min-width:750px) {
         display: none;
         position: relative;
     }
-        a{
+    
+    a {
         align-self: center;
-        }
-    `;
+    }
+`;
 
 const ContainerLink = styled.div`
     display: flex;
@@ -143,98 +130,62 @@ const ContainerLink = styled.div`
             text-decoration: none;
         }
         a {
-          border-bottom: 1px solid lightgray;
+            border-bottom: 1px solid lightgray;
         }
         
-    @media only screen and (min-width:800px) {
+    @media only screen and (min-width:750px) {
+        padding: 1rem 1.5rem 0;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        background-color: transparent;
+        transform: translateY(0);
+        position: relative;
+        & a:first-child {           
             display: flex;
-            flex-direction: row;
-            width: 100%;
-            align-items: center;
-            background-color: transparent;
-            transform: translateY(0);
-            position: relative;
-            & a:first-child {           
-            display: flex;
-            }
-            a {
-                border-bottom: none;
-            }     
+        }
+        a {
+            border-bottom: none;
+        }     
     }
-    `;
+`;
 
 const MenuItem = styled.span`
     font-size: 0.8rem;
     display: inline-block;
-    font-weight: 300;
+    font-weight: 500;
     margin: 0.5rem 0;
     color: ${props => props.isActive === true ? props.theme.colors.secondary : props.theme.colors.primary};
     text-decoration: none;
     transition: color .3s;
         &:hover {
-          color: ${props => props.theme.colors.secondary};
-        }
-    @media only screen and (min-width:800px) {
-        margin: 0.5rem 1rem;
-    }
-    `;
-
-const MenuItemH1 = styled.h1`
-    font-size: 0.8rem;
-    display: inline-block;
-    font-weight: 300;
-    margin: 0.5rem 0;
-    color: ${props => props.isActive === true ? props.theme.colors.secondary : props.theme.colors.primary};
-    text-decoration: none;
-    transition: color .3s;
-    
-    @media only screen and (min-width:800px) {
-        margin: 0.5rem 1rem;
-    }
-    
-    &:hover {
-        color: ${props => props.theme.colors.secondary};
-    }  
-    `;
-
-const Baseline = styled.div`
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        margin: auto 0;
-        height: 70vh;
-        justify-content: center;  
-        padding: 0 1rem;
-        small {
-            font-family: ${props => props.theme.fonts.secondary};
-            font-size: 3rem;
-            text-align: center;
-            display: block;
             color: ${props => props.theme.colors.secondary};
-            letter-spacing: 2px;
-            text-transform: none;
         }
-        strong {
-            display: block;
-            font-size: 2.70rem;
-            letter-spacing: 3px;
-            text-shadow: 1px 1px 3px #000000;
-        }     
-        @media only screen and (min-width:800px) {
-            padding-bottom: 3rem;
-            height: 60vh;
-            small {
-                font-size: 4rem;
-            }
-            strong {
-                font-size: 3.7rem;
-                padding: 1rem;
-            }          
-            p {
-                font-size: 1.4rem;
-            }
-        }
+    @media only screen and (min-width:750px) {
+        margin: 0.5rem 1rem;
+    }
     `;
+
+const BlockHeaderText = styled.div`
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    small {
+        font-size: 1.2rem;
+        text-align: center;
+        letter-spacing: 2px;
+        text-transform: none;
+        padding-bottom: 1rem;
+    }   
+    @media only screen and (min-width:750px) {
+        height: calc(35vh - 3.5rem);
+    }
+    @media only screen and (min-width:1200px) {
+        height: calc(50vh - 3.5rem);
+    }
+`;
 
 const ContainerTypewriter = styled.div`
     display: flex;
@@ -247,11 +198,11 @@ const ContainerTypewriter = styled.div`
         text-shadow: 1px 1px 3px #000000;
     }
     
-    @media only screen and (min-width:800px) {                 
-            span {
-                font-size: 1.4rem;
-            }
+    @media only screen and (min-width:750px) {                 
+        span {
+            font-size: 1.4rem;
         }
-    `;
+    }
+`;
 
 

@@ -1,27 +1,25 @@
 import React from "react"
 import {graphql} from "gatsby";
 import Layout from "../components/layout"
-//import HomeCategories from "../components/HomeCategories";
+
 import SEO from "../components/seo"
 import Header from "../components/Header";
-
-
-//import Metrics from "../components/Metrics";
-
+import About from "../components/Home/About";
+import styled from "styled-components";
 
 const IndexPage = ({data}) => {
 
     const bannerImageHome = data.banner.nodes[0].fileFirebase.childImageSharp.fluid;
     const allProjectsData = {
-        allProjectsTitle : data.allProject.nodes
+        allProjectsTitle : data.allProjectBanner.nodes
     };
 
     return (
         <Layout>
             <SEO title="Accueil" />
             <Header namePage={"home"} bannerImage={bannerImageHome} allProjectsData={allProjectsData} slogan={"Bienvenue sur mon Portfolio"}/>
-            {/*<Metrics/>*/}
-            {/*<HomeCategories/>*/}
+            <TitleHome>Développeur FulltStack junior React/Node</TitleHome>
+            <About/>
         </Layout>
     )
 };
@@ -40,13 +38,22 @@ export const query = graphql`
                 }
             }
         }
-        allProject: allFirebaseData(filter: {type: {eq: "project"}}) {
-            nodes {
-                projectTitle
+        allProjectBanner: allFirebaseData(filter: {type: {eq: "project"}}) {
+            nodes {              
+                urlImage
                 key
             }
         }
     }
+`;
+
+const TitleHome = styled.h1`
+    color: ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.dark};
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-size: 1.5rem;
+    text-align: center;
 `;
 
 export default IndexPage

@@ -20,19 +20,19 @@ const Layout = (props) => {
 
 const LayoutContainer = styled.div`
     font-family: ${props => props.theme.fonts.primary};
-    h1,h2,h3 {
-        color: ${props => props.theme.colors.secondary};
-        font-weight: 300;
-    }
-    h2 {
-        font-size: 1.5rem;
-        letter-spacing: 1px;
-    }
-    p {
-        font-weight: 300;
-        font-size: 0.7rem;
+    background-color: ${props => props.theme.colors.dark};
+
+    h1 {
+        font-weight: 500;
     }
     
+    h2 {
+        font-weight: 400;
+    }
+    
+    p {
+        font-weight: 300;
+    }
 `;
 
 

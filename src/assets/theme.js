@@ -5,7 +5,7 @@ const theme = {
         dark: "rgb(11, 11, 11)"
     },
     fonts: {
-        primary: 'Inknut Antiqua, serif;',
+        primary: 'Raleway, sans-serif;',
         secondary: 'Pinyon Script, cursive;'
     }
 };

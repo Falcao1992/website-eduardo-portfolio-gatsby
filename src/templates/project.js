@@ -58,7 +58,7 @@ export const query = graphql`
 `;
 
 const ContainerImg = styled.div`
-    @media only screen and (min-width:800px) {
+    @media only screen and (min-width:750px) {
         position: relative;
         width: 40%;
         align-self: center;
@@ -73,7 +73,7 @@ const StyledImg = styled(Img)`
     border: ${props => props.theme.colors.secondary} 1px solid;
     margin-bottom: 20px;
     z-index: -1;
-    @media only screen and (min-width:800px) {    
+    @media only screen and (min-width:750px) {    
         border: none;  
         position: relative;
         height: auto;
@@ -110,7 +110,7 @@ const ProjectTitle = styled.h2`
 const SourceLink = styled.a`
     color: ${props => props.theme.colors.secondary};
     font-size: 0.85rem;                   
-    @media only screen and (min-width:800px) {
+    @media only screen and (min-width:750px) {
         text-decoration: none;          
         span {               
             font-size: 0.9rem;
