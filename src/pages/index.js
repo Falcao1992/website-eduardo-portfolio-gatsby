@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Header from "../components/Header";
 import About from "../components/Home/About";
+import Skill from "../components/Home/Skill";
 import styled from "styled-components";
 
 const IndexPage = ({data}) => {
@@ -20,6 +21,7 @@ const IndexPage = ({data}) => {
             <Header namePage={"home"} bannerImage={bannerImageHome} allProjectsData={allProjectsData} slogan={"Bienvenue sur mon Portfolio"}/>
             <TitleHome>Développeur FulltStack junior React/Node</TitleHome>
             <About/>
+            <Skill/>
         </Layout>
     )
 };

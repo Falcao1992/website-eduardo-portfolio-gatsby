@@ -95,9 +95,9 @@ const NavStyled = styled.nav`
 `;
 
 const ListItemIconStyled = styled(ListItemIcon)`
+    z-index: 1000;
     color: ${props => props.theme.colors.primary};
     background-color: ${props => props.theme.colors.dark};
-    z-index: 1000;
     min-width: auto;
     padding: 0.5rem 1rem;
     width: 100%;
@@ -121,7 +121,7 @@ const ContainerLink = styled.div`
     width: 100%;
     padding: 0.5rem 3rem 3rem;
     margin: auto;
-    background-color: rgba(0, 0, 0, 0.975);
+    background-color: ${props => props.theme.colors.dark};
     transition: transform .9s ease-in-out ;
     position: fixed;
         & a:first-child {           

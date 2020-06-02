@@ -20,8 +20,6 @@ const Layout = (props) => {
 
 const LayoutContainer = styled.div`
     font-family: ${props => props.theme.fonts.primary};
-    background-color: ${props => props.theme.colors.dark};
-
     h1 {
         font-weight: 500;
     }
