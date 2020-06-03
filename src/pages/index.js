@@ -7,21 +7,23 @@ import Header from "../components/Header";
 import About from "../components/Home/About";
 import Skill from "../components/Home/Skill";
 import styled from "styled-components";
+import Projects from "../components/Home/Projects";
 
 const IndexPage = ({data}) => {
 
     const bannerImageHome = data.banner.nodes[0].fileFirebase.childImageSharp.fluid;
-    const allProjectsData = {
-        allProjectsTitle : data.allProjectBanner.nodes
-    };
+    const allProjectsBanner = data.allProjectsBanner.nodes;
+
+    console.log("allProjectsBanner", allProjectsBanner);
 
     return (
         <Layout>
             <SEO title="Accueil" />
-            <Header namePage={"home"} bannerImage={bannerImageHome} allProjectsData={allProjectsData} slogan={"Bienvenue sur mon Portfolio"}/>
+            <Header namePage={"home"} bannerImage={bannerImageHome} slogan={"Bienvenue sur mon Portfolio"}/>
             <TitleHome>Développeur FulltStack junior React/Node</TitleHome>
             <About/>
             <Skill/>
+            <Projects allProjectsBanner={allProjectsBanner} />
         </Layout>
     )
 };
@@ -40,10 +42,17 @@ export const query = graphql`
                 }
             }
         }
-        allProjectBanner: allFirebaseData(filter: {type: {eq: "project"}}) {
-            nodes {              
-                urlImage
+        allProjectsBanner: allFirebaseData(filter: {type: {eq: "banner"}}) {
+            nodes {
                 key
+                fileFirebase {
+                    childImageSharp {
+                        fluid {
+                            originalName
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
             }
         }
     }

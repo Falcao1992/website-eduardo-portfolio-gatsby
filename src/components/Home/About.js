@@ -45,10 +45,10 @@ const ContainerAbout = styled.section`
 `;
 
 const SubtitleStyled = styled.h2`
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.primary};
     background-color: ${props => props.theme.colors.dark};
     padding: 1rem 0;
-    border-bottom: 1px dashed ${props => props.theme.colors.secondary};
+    border-bottom: 1px dashed ${props => props.theme.colors.primary};
     width: max-content;
     margin: auto;
 `;
@@ -60,7 +60,7 @@ const ContainerBlockAbout = styled.div`
     align-items: center;
     @media only screen and (min-width: 750px) {
         width: 95%;
-        margin: 4rem auto;
+        margin: 4rem auto 0;
         flex-direction: row;
         justify-content: space-between;
     }

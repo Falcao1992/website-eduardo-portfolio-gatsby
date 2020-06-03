@@ -6,7 +6,7 @@ import Typewriter from 'typewriter-effect';
 import MenuIcon from '@material-ui/icons/Menu';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
-export default ({className, namePage, bannerImage, allProjectsData, slogan}) => {
+export default ({className, namePage, bannerImage, slogan}) => {
 
     const [burgerIsActive, setBurgerIsActive] = useState(false);
 

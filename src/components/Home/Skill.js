@@ -19,7 +19,6 @@ import styledComponents from '@iconify/icons-simple-icons/styled-components';
 const Skill = () => {
     return (
         <ContainerSkill>
-            <SubtitleStyled>Skills :</SubtitleStyled>
             <ContainerIcons>
                 <Icon icon={logoReact} width="45" height="45" />
                 <Icon icon={logoCss3} width="45" height="45" />
@@ -27,7 +26,7 @@ const Skill = () => {
                 <Icon icon={logoJavascript} width="45" height="45" />
                 <Icon icon={logoGithub} width="45" height="45" />
                 <Icon icon={logoNodejs} width="45" height="45" />
-                <Icon icon={expressIcon} width="45" height="45" />
+                <Icon icon={expressIcon} width="70" height="70" />
                 <Icon icon={mysqltwoIcon} width="45" height="45" />
                 <Icon icon={logoFirebase} width="45" height="45" />
                 <Icon icon={gitlabIcon} width="45" height="45" />
@@ -40,14 +39,10 @@ const Skill = () => {
 
 const ContainerSkill = styled.section`
     background-color: ${props => props.theme.colors.primary};
-`;
-
-const SubtitleStyled = styled.h2`
-    color: ${props => props.theme.colors.dark};
-    padding: 1rem 0;
-    border-bottom: 1px dashed ${props => props.theme.colors.dark};
-    width: max-content;
-    margin: auto;
+    
+    @media screen and (min-width: 1200px) {
+        padding: 2rem 0;
+    }
 `;
 
 const ContainerIcons = styled.div`
@@ -56,6 +51,12 @@ const ContainerIcons = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: .5rem;
     padding: 2rem 1rem;
+    
+    @media screen and (min-width: 1200px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 2rem;
+        padding: 2rem 0;
+    }
     svg {
         margin: auto;
     }
