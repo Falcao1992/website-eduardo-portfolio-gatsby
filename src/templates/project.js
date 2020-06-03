@@ -46,7 +46,7 @@ export const query = graphql`
                 urlImage
                     fileFirebase {
                         childImageSharp {
-                            fluid(maxWidth: 400, maxHeight: 250) {
+                            fluid {
                                 ...GatsbyImageSharpFluid
                                 originalName
                         }

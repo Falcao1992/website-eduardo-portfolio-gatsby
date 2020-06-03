@@ -1,19 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from 'gatsby'
 import Img from "gatsby-image"
 const Projects = ({allProjectsBanner}) => {
 
     console.log("allProjectsBanner", allProjectsBanner)
 
     return (
-        <ContainerProjects>
-            <SubtitleStyled>Mes Projects :</SubtitleStyled>
-            <TextExplanation>Voici un ensemble de mes realisations, pendant ma formation, ainsi que des projets perso </TextExplanation>
+        <ContainerProjects id="projects">
+            <BlockTitleText>
+                <SubtitleStyled>Mes Projects :</SubtitleStyled>
+                <TextExplanation>Voici un ensemble de mes realisations, pendant ma formation, ainsi que des projets perso </TextExplanation>
+            </BlockTitleText>
             <ContainerProjectsBanner>
                 {allProjectsBanner.filter(project => project.key !== "home").map(projectBanner => {
                     return (
-                        <BlockProjectBanner>
-                            <ImgStyled fluid={projectBanner.fileFirebase.childImageSharp.fluid} />
+                        <BlockProjectBanner key={projectBanner.key}>
+                            <Link to={`/${projectBanner.key}`}><ImgStyled fluid={projectBanner.fileFirebase.childImageSharp.fluid}
+                                                                          objectFit="cover"
+
+
+                            /></Link>
                         </BlockProjectBanner>
                     )
                 })}
@@ -24,13 +31,16 @@ const Projects = ({allProjectsBanner}) => {
 };
 
 const ContainerProjects = styled.section`
+    
+`;
+
+const BlockTitleText = styled.div `
     background-color: ${props => props.theme.colors.dark};
-    padding: 1rem 0;
+    padding: 1rem 0 2rem;
 `;
 
 const SubtitleStyled = styled.h2`
     color: ${props => props.theme.colors.primary};
-    background-color: ${props => props.theme.colors.dark};
     width: max-content;
     padding: 1rem 0;
     margin: 1rem auto;
@@ -48,15 +58,31 @@ const TextExplanation = styled.p`
 const ContainerProjectsBanner = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 3rem 0;
+    @media screen and (min-width: 750px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 `;
 
 const BlockProjectBanner = styled.div`
-  
+    width: 100%;
+    @media screen and (min-width: 750px) {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 const ImgStyled = styled(Img)`
-    width: 100%;
+    z-index: -1;
+    @media screen and (min-width: 750px) {
+        z-index: auto;
+    }
 `;
 
 

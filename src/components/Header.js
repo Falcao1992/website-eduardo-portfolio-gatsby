@@ -47,8 +47,9 @@ export default ({className, namePage, bannerImage, slogan}) => {
 
                     <ContainerLink burgerIsActive={burgerIsActive}>
                         <Link to="/"><MenuItem isActive={namePage === "home"}>Accueil</MenuItem></Link>
-                        <Link to={`/about`}><MenuItem isActive={namePage === "about"}>A propos de moi</MenuItem></Link>
-                        <Link to={`/skill`}><MenuItem isActive={namePage === "skill"}>Compétences</MenuItem></Link>
+                        <Link to={`/#about`}><MenuItem isActive={namePage === "about"}>A propos de moi</MenuItem></Link>
+                        <Link to={`/#skill`}><MenuItem isActive={namePage === "skill"}>Compétences</MenuItem></Link>
+                        <Link to={`/#projects`}><MenuItem isActive={namePage === "projects"}>projects</MenuItem></Link>
                         <Link to={`/contact`}><MenuItem isActive={namePage === "contact"}>contact</MenuItem></Link>
                     </ContainerLink>
                 </NavStyled>

@@ -18,7 +18,7 @@ import styledComponents from '@iconify/icons-simple-icons/styled-components';
 
 const Skill = () => {
     return (
-        <ContainerSkill>
+        <ContainerSkill id="skill">
             <ContainerIcons>
                 <Icon icon={logoReact} width="45" height="45" />
                 <Icon icon={logoCss3} width="45" height="45" />
@@ -39,6 +39,8 @@ const Skill = () => {
 
 const ContainerSkill = styled.section`
     background-color: ${props => props.theme.colors.primary};
+    z-index: -1;
+    position: relative;
     
     @media screen and (min-width: 1200px) {
         padding: 2rem 0;

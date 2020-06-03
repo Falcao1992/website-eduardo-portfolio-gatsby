@@ -20,7 +20,7 @@ const About = () => (
             const profilPicture = data.profilPicture.childImageSharp.fluid;
 
             return (
-                <ContainerAbout>
+                <ContainerAbout id="about">
                     <SubtitleStyled>A Propos de moi :</SubtitleStyled>
                     <ContainerBlockAbout>
                         <ImgStyled fluid={profilPicture}/>

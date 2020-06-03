@@ -34,7 +34,7 @@ export const query = graphql`
             nodes {
                 fileFirebase {
                     childImageSharp {
-                        fluid(maxWidth: 400, maxHeight: 250) {
+                        fluid {
                             originalName
                             ...GatsbyImageSharpFluid
                         }
@@ -47,7 +47,7 @@ export const query = graphql`
                 key
                 fileFirebase {
                     childImageSharp {
-                        fluid {
+                        fluid(maxWidth: 400, maxHeight: 270) {
                             originalName
                             ...GatsbyImageSharpFluid
                         }
