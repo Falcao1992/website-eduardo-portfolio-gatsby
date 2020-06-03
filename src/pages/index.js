@@ -8,6 +8,7 @@ import About from "../components/Home/About";
 import Skill from "../components/Home/Skill";
 import styled from "styled-components";
 import Projects from "../components/Home/Projects";
+import ContactForm from "../components/Home/ContactForm";
 
 const IndexPage = ({data}) => {
 
@@ -21,9 +22,10 @@ const IndexPage = ({data}) => {
             <SEO title="Accueil" />
             <Header namePage={"home"} bannerImage={bannerImageHome} slogan={"Bienvenue sur mon Portfolio"}/>
             <TitleHome>Développeur FulltStack junior React/Node</TitleHome>
-            <About/>
-            <Skill/>
+            <About />
+            <Skill />
             <Projects allProjectsBanner={allProjectsBanner} />
+            <ContactForm />
         </Layout>
     )
 };
