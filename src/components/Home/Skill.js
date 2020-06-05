@@ -24,21 +24,21 @@ const Skill = () => {
     const [displayHelper, setDisplayHelper] = useState([]);
 
     const skills = [
-        { name: "React", icon: logoReact,  width: "45", height: "45", padding: "normal"},
-        { name: "Css3", icon: logoCss3,  width: "45", height: "45", padding: "normal"},
-        { name: "Html5", icon: logoHtml5,  width: "45", height: "45", padding: "normal"},
-        { name: "Javascript", icon: logoJavascript,  width: "45", height: "45", padding: "normal"},
-        { name: "Github", icon: logoGithub,  width: "45", height: "45", padding: "normal"},
-        { name: "Nodejs", icon: logoNodejs,  width: "45", height: "45", padding: "normal"},
-        { name: "Express", icon: expressIcon,  width: "70", height: "45", padding: "normal"},
-        { name: "MySql", icon: mysqltwoIcon,  width: "45", height: "45", padding: "normal"},
-        { name: "Firebase", icon: logoFirebase,  width: "45", height: "45", padding: "normal"},
-        { name: "Gitlab", icon: gitlabIcon,  width: "45", height: "45", padding: "normal"},
-        { name: "Gatsby", icon: gatsbyIcon,  width: "45", height: "45", padding: "normal"},
-        { name: "Styled Components", icon: styledComponents,  width: "70", height: "70", padding: "small"},
-        { name: "Material-Ui", icon: materialUi,  width: "45", height: "45", padding: "normal"},
-        { name: "Bootstrap", icon: bootstrapIcon,  width: "45", height: "45", padding: "normal"},
-        { name: "GraphQl", icon: graphqlIcon,  width: "45", height: "45", padding: "normal"},
+        { name: "React", icon: logoReact,  width: "40", height: "40", padding: "normal"},
+        { name: "Css3", icon: logoCss3,  width: "40", height: "40", padding: "normal"},
+        { name: "Html5", icon: logoHtml5,  width: "40", height: "40", padding: "normal"},
+        { name: "Javascript", icon: logoJavascript,  width: "40", height: "40", padding: "normal"},
+        { name: "Github", icon: logoGithub,  width: "40", height: "40", padding: "normal"},
+        { name: "Nodejs", icon: logoNodejs,  width: "40", height: "40", padding: "normal"},
+        { name: "Express", icon: expressIcon,  width: "65", height: "40", padding: "normal"},
+        { name: "MySql", icon: mysqltwoIcon,  width: "40", height: "40", padding: "normal"},
+        { name: "Firebase", icon: logoFirebase,  width: "40", height: "40", padding: "normal"},
+        { name: "Gitlab", icon: gitlabIcon,  width: "40", height: "40", padding: "normal"},
+        { name: "Gatsby", icon: gatsbyIcon,  width: "40", height: "40", padding: "normal"},
+        { name: "Styled Components", icon: styledComponents,  width: "65", height: "50", padding: "small"},
+        { name: "Material-Ui", icon: materialUi,  width: "40", height: "40", padding: "normal"},
+        { name: "Bootstrap", icon: bootstrapIcon,  width: "40", height: "40", padding: "normal"},
+        { name: "GraphQl", icon: graphqlIcon,  width: "40", height: "40", padding: "normal"},
     ];
 
     const showHelperText = (e) => {
@@ -66,8 +66,8 @@ const Skill = () => {
                     return (
                         <BlockIcon key={skill.name}>
                             <SpanStyled padding={skill.padding} display={displayHelper[skill.name] === true ? "show" : "hidden"}>{skill.name}</SpanStyled>
-                            <BlockSvg>
-                                <Icon id={skill.name} onMouseEnter={(e) => showHelperText(e)} onMouseLeave={(e) => hideHelperText(e)}
+                            <BlockSvg id={skill.name} onMouseEnter={(e) => showHelperText(e)} onMouseLeave={(e) => hideHelperText(e)} display={displayHelper[skill.name] === true ? "show" : "hidden"}>
+                                <Icon
                                       icon={skill.icon} width={skill.width} height={skill.height}/>
                             </BlockSvg>
                         </BlockIcon>
@@ -85,10 +85,14 @@ const ContainerSkill = styled.section`
     
     @media screen and (min-width: 750px) {
         z-index: 0;
+        width: 90%;
+        margin: auto;
     }
     
     @media screen and (min-width: 1200px) {
         padding: 1rem 0;
+        width: 80%;
+        margin: auto;
     }
 `;
 
@@ -124,9 +128,12 @@ const BlockSvg = styled.div`
     width: 100%;
     justify-content: center;
     display: flex;
-    background-color: aliceblue;
+    background-color: ${props => props.theme.colors.primary};
     z-index: 2;
-    padding: .5rem;
+    padding: ${props => props.display === "hidden" ? ".5rem" : `calc(.5rem - 1px)`};
+    border-left: ${props => props.display === "hidden" ? `1px solid #c8944600` : `1px solid ${props.theme.colors.secondary}`};
+    border-right: ${props => props.display === "hidden" ? `1px solid #c8944600` : `1px solid ${props.theme.colors.secondary}`};
+    transition:  1s;  
 `;
 
 const SpanStyled = styled.span`
@@ -136,10 +143,11 @@ const SpanStyled = styled.span`
         position: absolute;
         background-color: ${props => props.theme.colors.dark};
         color: ${props => props.theme.colors.secondary};
-        border: 1px solid ${props => props.theme.colors.secondary};    
+        //border: 1px solid ${props => props.theme.colors.secondary};
+        //border-radius: 25% 25% 0 0;    
         text-align: center;
         font-size: .8rem;
-        padding: 1rem 1rem ${props => props.padding === "small" ? "1.5rem" : "1rem"};
+        padding: .6rem .6rem ${props => props.padding === "small" ? "1.2rem" : "1rem"};
         opacity: 1;
         z-index: ${props => props.display === "hidden" ? "1" : "2"};
         transform: ${props => props.display === "hidden" ? "initial" : "translate(0, -100%)"};

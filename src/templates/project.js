@@ -60,7 +60,7 @@ export const query = graphql`
 const ContainerImg = styled.div`
     @media only screen and (min-width:750px) {
         position: relative;
-        width: 40%;
+        width: 50%;
         align-self: center;
         transition: transform .5s ease-in-out .2s;      
         &:hover {
@@ -71,23 +71,9 @@ const ContainerImg = styled.div`
 
 const StyledImg = styled(Img)`
     border: ${props => props.theme.colors.secondary} 1px solid;
-    margin-bottom: 20px;
     z-index: -1;
     @media only screen and (min-width:750px) {    
-        border: none;  
-        position: relative;
-        height: auto;
-        overflow: visible !important;
-        &::before {
-            content: "";
-            border: #C89446 1px solid;
-            width: 100%;
-            height: 100%;
-            top: -30px;
-            left: ${props => props.position === "right" ? "30px" : "-30px"};
-            position: absolute;
-            z-index: -0;
-        }     
+        border: none;    
     }
 `;
 

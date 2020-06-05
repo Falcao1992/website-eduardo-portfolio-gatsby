@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import {Button, TextField} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
 import app from "../../firebase";
 
@@ -70,34 +70,43 @@ const ContactForm = () => {
             <FormStyled onSubmit={handleSubmit} autoComplete="off">
 
 
-                <TextFieldStyled onChange={handleChange} value={name}
-                                 id="name"
-                                 autoComplete="off"
-                                 label="Nom *" variant="filled"
-                                 helperText={missingField && name === "" ? <small>Veuillez indiquer votre Nom svp
-                                     !</small> : name !== "" && missingField ?
-                                     <CorrectField>bien rempli*</CorrectField> : false}
-                                 error={missingField && name === "" && true}
-                />
-
-                <TextFieldStyled onChange={handleChange} value={firstName}
-                                 id="firstName"
-                                 label="Prénom *" variant="filled"
-                                 helperText={missingField && firstName === "" ?
-                                     <small>Veuillez indiquer votre Prénom svp
-                                         !</small> : firstName !== "" && missingField ?
+                <ContainerMultipleField>
+                    <TextFieldStyled onChange={handleChange}
+                                     value={name}
+                                     size="small"
+                                     id="name"
+                                     autoComplete="off"
+                                     label="Nom *" variant="filled"
+                                     helperText={missingField && name === "" ? <small>Veuillez indiquer votre Nom svp
+                                         !</small> : name !== "" && missingField ?
                                          <CorrectField>bien rempli*</CorrectField> : false}
-                                 error={missingField && firstName === "" && true}
-                />
+                                     error={missingField && name === "" && true}
+                    />
 
-                <TextFieldStyled onChange={handleChange} value={message}
+                    <TextFieldStyled onChange={handleChange}
+                                     size="small"
+                                     value={firstName}
+                                     id="firstName"
+                                     label="Prénom *" variant="filled"
+                                     helperText={missingField && firstName === "" ?
+                                         <small>Veuillez indiquer votre Prénom svp
+                                             !</small> : firstName !== "" && missingField ?
+                                             <CorrectField>bien rempli*</CorrectField> : false}
+                                     error={missingField && firstName === "" && true}
+                    />
+
+                </ContainerMultipleField>
+
+                <TextFieldStyled onChange={handleChange}
+                                 value={message}
+                                 size="large"
                                  multiline
-                                 rows={4}
+                                 rows={3}
                                  id="message"
                                  label="message *" variant="filled"
                                  helperText={missingField && message === "" ?
                                      <small>Veuillez rentrer un message svp !</small> : message !== "" && missingField ?
-                                         <CorrectField>bien rempli*</CorrectField> : false}
+                                         <CorrectField>Correct*</CorrectField> : false}
                                  error={missingField && message === "" && true}
                 />
 
@@ -117,8 +126,7 @@ const ContactForm = () => {
                                  label="Numéro de téléphone (Falcutatif)" variant="filled"
                 />
 
-                <ButtonCreate variant="contained" type="submit" color="primary"
-                              aria-label="edit">Envoyer</ButtonCreate>
+                <ButtonSendMessage type="submit">Envoyer votre message</ButtonSendMessage>
             </FormStyled>
         </ContainerContact>
     )
@@ -165,9 +173,14 @@ const CorrectField = styled.small`
 `;
 
 
+const ContainerMultipleField = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
 const TextFieldStyled = styled(TextField)`
-    margin-bottom: 25px;
-    
+    margin-bottom: 1.2rem;
+    width: ${props => props.size === "small" && "calc(50% - .6rem)"};  
     // couleur du label si selectionné
     .Mui-focused { 
         color: ${props =>props.theme.colors.secondary} !important;
@@ -209,18 +222,43 @@ const TextFieldStyled = styled(TextField)`
           
 `;
 
-
-
-const ButtonCreate = styled(Button)`
-    width: 50%;
-    margin: auto;
-    background-color: black;
-    color: ${props => props.theme.colors.secondary} !important;
-    transition: all .3s;
-    &:hover {
-        background-color: ${props => props.theme.colors.secondary};
-        color: ${props => props.theme.colors.primary} !important;
-    }       
+const ButtonSendMessage = styled.button`
+    width: 100%;
+    margin: 1rem auto 0;
+    padding: 1rem;
+    background-color: transparent;
+    color: ${props => props.theme.colors.secondary};
+    border: 1px solid ${props => props.theme.colors.secondary};
+    position: relative;
+    transition: .8s;
+    overflow: hidden;
+    cursor: pointer;
+    
+    @media screen and (min-width: 750px) {
+        width: 50%;
+    }
+    
+    :hover {
+        background-color: transparent;
+        color: aliceblue;
+        z-index: 1;
+    }
+    
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: ${props => props.theme.colors.secondary};
+        border-radius: 0 0 50% 50%;
+        transition: .8s;
+    }
+    :hover:before {
+        height: 180%;
+        z-index: -1;
+    }     
 `;
 
 export default ContactForm
