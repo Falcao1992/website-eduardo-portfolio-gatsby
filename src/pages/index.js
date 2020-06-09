@@ -9,6 +9,7 @@ import Skill from "../components/Home/Skill";
 import styled from "styled-components";
 import Projects from "../components/Home/Projects";
 import ContactForm from "../components/Home/ContactForm";
+import Footer from "../components/Footer/Footer";
 
 const IndexPage = ({data}) => {
 
@@ -26,6 +27,7 @@ const IndexPage = ({data}) => {
             <Skill />
             <Projects allProjectsBanner={allProjectsBanner} />
             <ContactForm />
+            <Footer />
         </Layout>
     )
 };

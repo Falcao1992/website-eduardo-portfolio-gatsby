@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {StaticQuery, graphql} from "gatsby";
 import Img from "gatsby-image";
+import cv from "../../images/cv.png"
 
 const About = () => (
     <StaticQuery
@@ -32,6 +33,15 @@ const About = () => (
                             Vous découvrirez dans ce portfolio, mes compétences, mon parcours ainsi que les projets que j'ai pu réaliser.
                             Si vous avez des questions, n'hésitez pas à me contacter.</DescriptionStyled>
                     </ContainerBlockAbout>
+                    <ContainerButton>
+                        <a
+                            href={cv}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <ButtonCV className="learn">Voir mon cv</ButtonCV>
+                        </a>
+                    </ContainerButton>
                 </ContainerAbout>
             )
         }}
@@ -57,20 +67,22 @@ const SubtitleStyled = styled.h2`
 `;
 
 const ContainerBlockAbout = styled.div`
-    padding: 1rem 1rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1rem;
     @media only screen and (min-width: 750px) {
         width: 95%;
-        margin: 4rem auto 0;
         flex-direction: row;
         justify-content: space-between;
+        margin: 4rem auto 0;
+        padding: .5rem;
     }
     @media only screen and (min-width: 1200px) {
         width: 90%;
+        justify-content: space-evenly;
         margin: auto;
-        justify-content: space-evenly;    
+        padding: 0;    
     }
     
 `;
@@ -84,6 +96,11 @@ const DescriptionStyled = styled.p`
     margin-bottom: 3rem;
     
     @media only screen and (min-width: 750px) {
+        font-size: 1rem;
+        width: 65%;
+    }
+    
+    @media only screen and (min-width: 1200px) {
         font-size: 1rem;
         width: 60%;
     }
@@ -125,6 +142,60 @@ const ImgStyled = styled(Img)`
     @media only screen and (min-width: 750px) {
         width: 28%;
     }
+`;
+
+const ContainerButton = styled.div`
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-bottom: 4rem;
+    
+    @media screen and (min-width: 750px) {
+        width: 90%;
+        justify-content: flex-end;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 80%;
+        justify-content: flex-end;
+    }
+`;
+
+const ButtonCV = styled.button`
+    padding: 1rem;
+    background-color: transparent;
+    color: ${props => props.theme.colors.secondary};
+    border: 1px solid ${props => props.theme.colors.secondary};
+    position: relative;
+    transition: .8s;
+    overflow: hidden;
+    cursor: pointer;
+    
+    @media screen and (min-width: 750px) {
+        width: 100%;
+    }
+    
+    :hover {
+        background-color: transparent;
+        color: aliceblue;
+        z-index: 1;
+    }
+    
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: ${props => props.theme.colors.secondary};
+        border-radius: 0 0 50% 50%;
+        transition: .8s;
+    }
+    :hover:before {
+        height: 180%;
+        z-index: -1;
+    }     
 `;
 
 export default About

@@ -73,7 +73,7 @@ const ContactForm = () => {
                 <ContainerMultipleField>
                     <TextFieldStyled onChange={handleChange}
                                      value={name}
-                                     size="small"
+                                     space="small"
                                      id="name"
                                      autoComplete="off"
                                      label="Nom *" variant="filled"
@@ -84,7 +84,7 @@ const ContactForm = () => {
                     />
 
                     <TextFieldStyled onChange={handleChange}
-                                     size="small"
+                                     space="small"
                                      value={firstName}
                                      id="firstName"
                                      label="Prénom *" variant="filled"
@@ -99,9 +99,9 @@ const ContactForm = () => {
 
                 <TextFieldStyled onChange={handleChange}
                                  value={message}
-                                 size="large"
+                                 space="large"
                                  multiline
-                                 rows={3}
+                                 rows={5}
                                  id="message"
                                  label="message *" variant="filled"
                                  helperText={missingField && message === "" ?
@@ -148,13 +148,16 @@ const SubtitleStyled = styled.h2`
 const FormStyled = styled.form`
     display: flex;
     flex-direction: column;
-    padding: 3rem;       
+    padding: 3rem 1.5rem; 
     input {
         margin-bottom: 15px;
     }
-    @media only screen and (min-width:800px) {
-        width: 70%;
+    @media only screen and (min-width:750px) {
+        width: 85%;
         margin: auto;       
+    }
+    @media only screen and (min-width:1200px) {
+        width: 70%;    
     }
 `;
 
@@ -180,7 +183,7 @@ const ContainerMultipleField = styled.div`
 
 const TextFieldStyled = styled(TextField)`
     margin-bottom: 1.2rem;
-    width: ${props => props.size === "small" && "calc(50% - .6rem)"};  
+    width: ${props => props.space === "small" && "calc(50% - .6rem)"};  
     // couleur du label si selectionné
     .Mui-focused { 
         color: ${props =>props.theme.colors.secondary} !important;
@@ -236,6 +239,7 @@ const ButtonSendMessage = styled.button`
     
     @media screen and (min-width: 750px) {
         width: 50%;
+        margin: 3rem auto 1.5rem;
     }
     
     :hover {
