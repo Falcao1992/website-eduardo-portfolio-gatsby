@@ -31,6 +31,12 @@ export default ({className, namePage, bannerImage, slogan}) => {
         />
     };
 
+    const closeBurgerTimeout = () => {
+        setTimeout(() => {
+            setBurgerIsActive(false)
+        }, 200)
+    };
+
     return (
         <>
             <StyledBackgroundSection
@@ -46,16 +52,16 @@ export default ({className, namePage, bannerImage, slogan}) => {
                     </ListItemIconStyled>
 
                     <ContainerLink burgerIsActive={burgerIsActive}>
-                        <Link to="/"><MenuItem isActive={namePage === "home"}>Accueil</MenuItem></Link>
-                        <Link to={`/#about`}><MenuItem isActive={namePage === "about"}>A propos de moi</MenuItem></Link>
-                        <Link to={`/#skill`}><MenuItem isActive={namePage === "skill"}>Compétences</MenuItem></Link>
-                        <Link to={`/#projects`}><MenuItem isActive={namePage === "projects"}>projects</MenuItem></Link>
-                        <Link to={`/contact`}><MenuItem isActive={namePage === "contact"}>contact</MenuItem></Link>
+                        <Link to="/" ><MenuItem isActive={namePage === "home"}>Accueil</MenuItem></Link>
+                        <Link to={`/#about`} ><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "about"}>A propos de moi</MenuItem></Link>
+                        <Link to={`/#skill`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "skill"}>Compétences</MenuItem></Link>
+                        <Link to={`/#projects`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "projects"}>projects</MenuItem></Link>
+                        <Link to={`/#contact`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "contact"}>contact</MenuItem></Link>
                     </ContainerLink>
                 </NavStyled>
 
                 <BlockHeaderText>
-                    <small>Eduardo Lépine</small>
+                    <small>{namePage === "home" ? "Eduardo Lépine" : "Mes Projets"}</small>
                     <ContainerTypewriter>
                         {sloganMatch()}
                     </ContainerTypewriter>
@@ -73,7 +79,7 @@ const StyledBackgroundSection = styled(BackgroundImage)`
         height: 35vh;
     }
     @media only screen and (min-width:1200px) {
-        height: 50vh;
+        height: 70vh;
     }
 `;
 
@@ -123,7 +129,7 @@ const ContainerLink = styled.div`
     padding: 0.5rem 3rem 3rem;
     margin: auto;
     background-color: ${props => props.theme.colors.dark};
-    transition: transform .9s ease-in-out ;
+    transition: transform .7s ${props => props.burgerIsActive ? "ease-out" : "ease-in"} ;
     position: fixed;
         & a:first-child {           
             display: none;
@@ -184,7 +190,7 @@ const BlockHeaderText = styled.div`
         height: calc(35vh - 3.5rem);
     }
     @media only screen and (min-width:1200px) {
-        height: calc(50vh - 3.5rem);
+        height: calc(70vh - 3.5rem);
     }
 `;
 

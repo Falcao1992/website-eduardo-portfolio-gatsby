@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@iconify/icons-bi": "^1.0.3",
     "@iconify/icons-bx": "^1.0.3",
     "@iconify/icons-carbon": "^1.0.1",
     "@iconify/icons-cib": "^1.0.3",

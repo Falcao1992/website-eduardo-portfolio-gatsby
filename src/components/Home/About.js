@@ -22,6 +22,7 @@ const About = () => (
 
             return (
                 <ContainerAbout id="about">
+                    <TitleHome>Développeur FulltStack junior React/Node</TitleHome>
                     <SubtitleStyled>A Propos de moi :</SubtitleStyled>
                     <ContainerBlockAbout>
                         <ImgStyled fluid={profilPicture}/>
@@ -57,13 +58,22 @@ const ContainerAbout = styled.section`
     }
 `;
 
+const TitleHome = styled.h1`
+    color: ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.dark};
+    margin: 0 auto;
+    padding: 4rem 1rem 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+`;
+
 const SubtitleStyled = styled.h2`
     color: ${props => props.theme.colors.primary};
     background-color: ${props => props.theme.colors.dark};
     padding: 1rem 0;
     border-bottom: 1px dashed ${props => props.theme.colors.primary};
     width: max-content;
-    margin: auto;
+    margin: 2rem auto;
 `;
 
 const ContainerBlockAbout = styled.div`
@@ -94,6 +104,7 @@ const DescriptionStyled = styled.p`
     position: relative;
     padding: 1rem 0.5rem;
     margin-bottom: 3rem;
+    text-align: justify;
     
     @media only screen and (min-width: 750px) {
         font-size: 1rem;

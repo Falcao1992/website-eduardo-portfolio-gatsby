@@ -43,7 +43,7 @@ const SubtitleStyled = styled.h2`
     color: ${props => props.theme.colors.primary};
     width: max-content;
     padding: 1rem 0;
-    margin: 1rem auto;
+    margin: 2rem auto;
     border-bottom: 1px dashed ${props => props.theme.colors.primary};
 `;
 

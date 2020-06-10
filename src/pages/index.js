@@ -10,6 +10,10 @@ import styled from "styled-components";
 import Projects from "../components/Home/Projects";
 import ContactForm from "../components/Home/ContactForm";
 import Footer from "../components/Footer/Footer";
+import { Icon} from '@iconify/react';
+import arrowUpCircle from '@iconify/icons-bi/arrow-up-circle';
+
+
 
 const IndexPage = ({data}) => {
 
@@ -18,16 +22,26 @@ const IndexPage = ({data}) => {
 
     console.log("allProjectsBanner", allProjectsBanner);
 
+    const redirectArrowUp = () => {
+        window.scrollTo({
+            top:0,
+            left:0,
+            behavior: "smooth"
+        })
+    };
+
     return (
         <Layout>
             <SEO title="Accueil" />
-            <Header namePage={"home"} bannerImage={bannerImageHome} slogan={"Bienvenue sur mon Portfolio"}/>
-            <TitleHome>Développeur FulltStack junior React/Node</TitleHome>
+            <Header namePage={"home"} bannerImage={bannerImageHome} slogan={"Bienvenue sur mon Portfolio "}/>
             <About />
             <Skill />
             <Projects allProjectsBanner={allProjectsBanner} />
+            <BlockArrowUp onClick={redirectArrowUp}>
+                <Icon icon={arrowUpCircle} width="50px" height="50px" />
+            </BlockArrowUp>
             <ContactForm />
-            <Footer />
+
         </Layout>
     )
 };
@@ -62,13 +76,20 @@ export const query = graphql`
     }
 `;
 
-const TitleHome = styled.h1`
+const BlockArrowUp = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
     color: ${props => props.theme.colors.secondary};
-    background-color: ${props => props.theme.colors.dark};
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    font-size: 1.5rem;
-    text-align: center;
+    cursor: pointer;
+    bottom: 4.5rem;
+    right: 1rem;
+    opacity: .8;
+    @media screen and (min-width: 750px) {
+        right: 2rem;
+    }
 `;
 
 export default IndexPage

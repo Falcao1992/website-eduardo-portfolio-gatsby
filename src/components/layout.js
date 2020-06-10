@@ -4,6 +4,7 @@ import theme from "../assets/theme";
 import {ThemeProvider} from "styled-components";
 //import {Footer} from "./Footer";
 import styled from "styled-components";
+import Footer from "./Footer/Footer";
 
 
 const Layout = (props) => {
@@ -12,7 +13,7 @@ const Layout = (props) => {
         <ThemeProvider theme={theme}>
             <LayoutContainer>
                 <main>{props.children}</main>
-                {/*<Footer/>*/}
+                <Footer />
             </LayoutContainer>
         </ThemeProvider>
     )

@@ -64,7 +64,7 @@ const ContactForm = () => {
     };
 
     return (
-        <ContainerContact>
+        <ContainerContact id="contact">
             <SubtitleStyled>Nous Contacter :</SubtitleStyled>
             {hasBeenSent && <ToastHasBeenSent><CheckIconStyled/> Votre message à bien été envoyé !</ToastHasBeenSent>}
             <FormStyled onSubmit={handleSubmit} autoComplete="off">
@@ -135,13 +135,18 @@ const ContactForm = () => {
 const ContainerContact = styled.section`
     background-color: ${props => props.theme.colors.dark};
     padding: 2rem 0;
+    z-index: -1;
+    position: relative;
+    @media screen and (min-width: 750px){
+        z-index: auto;
+    }
 `;
 
 const SubtitleStyled = styled.h2`
     color: ${props => props.theme.colors.primary};
     width: max-content;
     padding: 1rem 0;
-    margin: 1rem auto;
+    margin: 2rem auto;
     border-bottom: 1px dashed ${props => props.theme.colors.primary};
 `;
 
