@@ -61,7 +61,7 @@ export default ({className, namePage, bannerImage, slogan}) => {
                 </NavStyled>
 
                 <BlockHeaderText>
-                    <small>{namePage === "home" ? "Eduardo Lépine" : "Mes Projets"}</small>
+                    <small>{namePage === "home" ? "Eduardo Lépine" : "Projet :"}</small>
                     <ContainerTypewriter>
                         {sloganMatch()}
                     </ContainerTypewriter>
@@ -75,8 +75,17 @@ const StyledBackgroundSection = styled(BackgroundImage)`
     color: ${props => props.theme.colors.primary};
     text-transform: uppercase;
     height: 50vh;
+    &::after {
+        height: calc(100% - 3rem) !important;
+        top: unset !important;
+        bottom: 0;
+    }
     @media only screen and (min-width:750px) {
         height: 35vh;
+        &::after {
+            height: 100% !important;
+            top: 0 !important;
+        }
     }
     @media only screen and (min-width:1200px) {
         height: 70vh;

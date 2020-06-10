@@ -14,21 +14,21 @@ export default ({data, pageContext}) => {
         <Layout>
             <SEO title={projectTitle}/>
             <Header namePage={key} bannerImage={bannerImage} allProjectsData={pageContext} slogan={projectTitle}/>
-            <div key={uid}>
+            <ContainerProject key={uid}>
                 <ContainerImg>
                     <a href={urlImage} target="_blank" rel="noopener noreferrer">
                         <StyledImg alt={projectTitle}
                                    fluid={fileFirebase.childImageSharp.fluid}/>
                     </a>
                 </ContainerImg>
-                <div>
-                    <ProjectTitle>{projectTitle}</ProjectTitle>
+                <BlockDescription>
+                    <h2>{projectTitle}</h2>
                     <p>{description}</p>
                     {(sourceNetlify && sourceNetlify !== "none") &&
                     <SourceLink href={sourceNetlify} target="_blank"
-                                rel="noopener noreferrer"><span>Source</span></SourceLink>}
-                </div>
-            </div>
+                                rel="noopener noreferrer"><span>Visiter le Site ></span></SourceLink>}
+                </BlockDescription>
+            </ContainerProject>
         </Layout>
     );
 };
@@ -57,40 +57,43 @@ export const query = graphql`
     }
 `;
 
+const ContainerProject = styled.article`
+    position: relative;
+    background-color: ${props => props.theme.colors.dark};
+    z-index: -1;
+    padding: 2rem 0;
+    
+    @media screen and (min-width: 750px) {
+        z-index: auto;
+    }
+`;
+
 const ContainerImg = styled.div`
+    width: 95%;
+    padding: 1rem 0;
+    margin: auto;
     @media only screen and (min-width:750px) {
-        position: relative;
-        width: 50%;
-        align-self: center;
-        transition: transform .5s ease-in-out .2s;      
-        &:hover {
-            transform: scale(1.05);
-        }                        
+        width: 75%;                   
     }
 `;
 
 const StyledImg = styled(Img)`
-    border: ${props => props.theme.colors.secondary} 1px solid;
-    z-index: -1;
-    @media only screen and (min-width:750px) {    
-        border: none;    
-    }
+    
 `;
 
-const ProjectTitle = styled.h2`            
-    text-transform: none;
-    color: ${props => props.theme.colors.secondary};
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
-    &::before {
-        display: block;
-        content: "";
-        width: 24px;
-        height: 2px;
-        background: #C89446;
-        margin-bottom: 10px;
-        clear: both;
+const BlockDescription = styled.div`            
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    h2 {
+      color: ${props => props.theme.colors.secondary};
+      padding: 1rem 0;
     }  
+    p {
+      color: ${props => props.theme.colors.primary};
+      text-align: justify;
+      padding: 1rem 0;
+    }
 `;
 
 const SourceLink = styled.a`
