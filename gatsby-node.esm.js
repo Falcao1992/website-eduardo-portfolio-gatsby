@@ -65,8 +65,6 @@ exports.sourceNodes = async ({
             originalId: result.uid,
             parent: result.uid,
             children: [],
-            //title: result.title,
-            //type:result.type,
             internal: {
                 type: "firebaseData",
                 description: result.key,
@@ -106,6 +104,11 @@ exports.createResolvers = ({createResolvers}) => {
                     return source.description
                 }
             },
+            technos: {
+                resolve: source => {
+                    return source.technos
+                }
+            },
             sourceNetlify: {
                 resolve: sources => {
                     return sources.sourceNetlify
@@ -130,6 +133,7 @@ exports.createSchemaCustomization = ({actions}) => {
       urlImage: String!
       projectTitle: String
       description: String
+      technos: String
       sourceNetlify: String
       uid: String!
     }

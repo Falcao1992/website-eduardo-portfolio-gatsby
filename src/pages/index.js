@@ -9,7 +9,6 @@ import Skill from "../components/Home/Skill";
 import styled from "styled-components";
 import Projects from "../components/Home/Projects";
 import ContactForm from "../components/Home/ContactForm";
-import Footer from "../components/Footer/Footer";
 import { Icon} from '@iconify/react';
 import arrowUpCircle from '@iconify/icons-bi/arrow-up-circle';
 

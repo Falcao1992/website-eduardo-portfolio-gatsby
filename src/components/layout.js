@@ -22,11 +22,11 @@ const Layout = (props) => {
 const LayoutContainer = styled.div`
     font-family: ${props => props.theme.fonts.primary};
     h1 {
-        font-weight: 500;
+        font-weight: 700;
     }
     
     h2 {
-        font-weight: 400;
+        font-weight: 700;
     }
     
     p {

@@ -7,8 +7,22 @@ import Header from "../components/Header";
 import SEO from "../components/seo";
 
 export default ({data, pageContext}) => {
-    const {description, fileFirebase, key, projectTitle, sourceNetlify, uid, urlImage} = data.allFirebaseData.nodes[0];
+    const {description, fileFirebase, key, projectTitle, technos, sourceNetlify, uid, urlImage} = data.allFirebaseData.nodes[0];
     const bannerImage = data.allFirebaseData.nodes[1].fileFirebase.childImageSharp.fluid;
+
+    const createTags = (sentenceTags) => {
+        const sentenceTransform = sentenceTags.split(",");
+        return (
+            <ContainerTag>
+                {sentenceTransform.map((tag, i) => {
+                    return (
+                        <span key={i}>{tag.substr(0, 1).toUpperCase() + tag.substr(1)}</span>
+                    )
+                })}
+            </ContainerTag>
+        )
+
+    };
 
     return (
         <Layout>
@@ -24,6 +38,7 @@ export default ({data, pageContext}) => {
                 <BlockDescription>
                     <h2>{projectTitle}</h2>
                     <p>{description}</p>
+                    {createTags(technos)}
                     {(sourceNetlify && sourceNetlify !== "none") &&
                     <SourceLink href={sourceNetlify} target="_blank"
                                 rel="noopener noreferrer"><span>Visiter le Site ></span></SourceLink>}
@@ -39,6 +54,7 @@ export const query = graphql`
             nodes {
                 projectTitle
                 description
+                technos
                 sourceNetlify
                 key
                 uid
@@ -65,6 +81,12 @@ const ContainerProject = styled.article`
     
     @media screen and (min-width: 750px) {
         z-index: auto;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 4rem 0;
+    }
+    @media screen and (min-width: 1200px) {    
+        padding: 6rem 0;
     }
 `;
 
@@ -73,7 +95,10 @@ const ContainerImg = styled.div`
     padding: 1rem 0;
     margin: auto;
     @media only screen and (min-width:750px) {
-        width: 75%;                   
+        width: 40%;
+        margin: 0;
+        padding: 0;
+        align-self: center;                   
     }
 `;
 
@@ -84,7 +109,13 @@ const StyledImg = styled(Img)`
 const BlockDescription = styled.div`            
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 0 1rem;
+    @media only screen and (min-width:750px) {
+        width: 50%;                   
+    }   
+    @media only screen and (min-width:750px) {
+        justify-content: space-evenly;                  
+    }
     h2 {
       color: ${props => props.theme.colors.secondary};
       padding: 1rem 0;
@@ -93,6 +124,22 @@ const BlockDescription = styled.div`
       color: ${props => props.theme.colors.primary};
       text-align: justify;
       padding: 1rem 0;
+    }
+`;
+
+const ContainerTag = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    span {
+        background-color: ${props => props.theme.colors.primary};
+        color: ${props => props.theme.colors.dark};
+        font-weight: 500;
+        padding: .5rem;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 10%;
     }
 `;
 
