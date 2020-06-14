@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 import styled from "styled-components";
 import Header from "../components/Header";
 import SEO from "../components/seo";
+import Carousel from "../components/Carousel/Carousel";
 
 export default ({data, pageContext}) => {
     const {description, fileFirebase, key, projectTitle, technos, sourceNetlify, uid, urlImage} = data.allFirebaseData.nodes[0];
@@ -44,6 +45,7 @@ export default ({data, pageContext}) => {
                                 rel="noopener noreferrer"><span>Visiter le Site ></span></SourceLink>}
                 </BlockDescription>
             </ContainerProject>
+            <Carousel  />
         </Layout>
     );
 };

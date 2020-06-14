@@ -144,14 +144,11 @@ exports.createSchemaCustomization = ({actions}) => {
 
 exports.createPages = async ({graphql, actions}) => {
     const {createPage} = actions;
+
     const firebaseData = await graphql(`
         query {
             allFirebaseData(filter: {type: {eq: "project"}}) {
-                distinct(field: key)
-                    nodes {
-                        projectTitle
-                        key
-                }
+                distinct(field: key)            
             }
         }
     `);
@@ -163,7 +160,7 @@ exports.createPages = async ({graphql, actions}) => {
             component: path.resolve("./src/templates/project.js"),
             context: {
                 key: key,
-                allProjectsTitle: firebaseData.data.allFirebaseData.nodes
+                //allProjectsTitle: firebaseDataBanner.data.allFirebaseData.nodes
             }
         })
     });
