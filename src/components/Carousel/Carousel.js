@@ -16,7 +16,7 @@ const Carousel = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             turnCarousel(positionCarousel)
-        }, 6000);
+        }, 6500);
         return () => clearTimeout(timer)
 
     }, [positionCarousel]);
@@ -42,22 +42,25 @@ const Carousel = () => {
         if (positionCarousel !== 0) {
             setPositionCarousel(positionCarousel - 1);
             setDirection("DSC");
+            if(positionCarousel === 1) {
+                setDirection("ASD")
+            }
         } else {
             console.log("min atteint")
         }
-        console.log(positionCarousel)
-
     };
 
     const changePositionAfter = (max) => {
         if (positionCarousel < max - 1) {
-            setPositionCarousel(positionCarousel + 1);
             setDirection("ASD");
+            if(positionCarousel === max - 2) {
+                setDirection("DSC")
+            }
+            setPositionCarousel(positionCarousel + 1);
         } else {
             //maxCarousel = max;
             console.log("max atteint")
         }
-        console.log(positionCarousel)
     };
 
     const initializeMax = (max) => {
@@ -123,7 +126,7 @@ const ContainerCarousel = styled.div`
 const ImgStyled = styled(Img)`
     width: 100vw;
     transform: translateX(-${props => props.positionCarousel * 100}vw);
-    transition: transform .7s linear;    
+    transition: transform .8s linear;    
 `;
 
 const SpanBefore = styled.span`
