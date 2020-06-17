@@ -74,7 +74,7 @@ export default ({className, namePage, bannerImage, slogan}) => {
 const StyledBackgroundSection = styled(BackgroundImage)`
     color: ${props => props.theme.colors.primary};
     text-transform: uppercase;
-    height: 50vh;
+    height: 100vh;
     &::after {
         height: calc(100% - 3rem) !important;
         top: unset !important;
@@ -184,7 +184,7 @@ const MenuItem = styled.span`
     `;
 
 const BlockHeaderText = styled.div`
-    height: 50vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
