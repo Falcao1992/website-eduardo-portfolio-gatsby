@@ -16,7 +16,7 @@ const Carousel = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             turnCarousel(positionCarousel)
-        }, 6500);
+        }, 8000);
         return () => clearTimeout(timer)
 
     }, [positionCarousel]);
@@ -78,7 +78,7 @@ const Carousel = () => {
                             urlImage
                             fileFirebase {
                                 childImageSharp {
-                                    fluid(maxWidth: 400, maxHeight: 270) {
+                                    fluid {
                                         originalName
                                         ...GatsbyImageSharpFluid
                                     }
@@ -94,20 +94,36 @@ const Carousel = () => {
                 return (
                     <ContainerCarousel>
                         {maxCarousel === null && initializeMax(data.allFirebaseData.totalCount)}
-                        <SpanBefore onClick={changePositionBefore}><Icon icon={arrowLeftOutlined} width="25px"
-                                                                         height="25px"/></SpanBefore>
+                        <SpanBefore onClick={changePositionBefore}
+                                    ishidden={positionCarousel === 0}
+                        >
+                            <Icon icon={arrowLeftOutlined}
+                                  width="20px"
+                                  height="20px"
+                            />
+                        </SpanBefore>
                         {data.allFirebaseData.nodes.map((project) => {
                             return (
-                                <Link key={project.key} to={`/${project.key}`}>
-                                    <ImgStyled fluid={project.fileFirebase.childImageSharp.fluid}
-                                               alt={project.key}
-                                               positionCarousel={positionCarousel}
-                                    />
-                                </Link>
+                                <ContainerBlockCarousel key={project.key} positionCarousel={positionCarousel} >
+                                    <p>{project.key}</p>
+                                    <Link to={`/${project.key}`}>
+                                        <ImgStyled fluid={project.fileFirebase.childImageSharp.fluid}
+                                                   alt={project.key}
+                                                   positionCarousel={positionCarousel}
+                                        />
+                                    </Link>
+                                </ContainerBlockCarousel>
                             )
                         })}
-                        <SpanAfter onClick={() => changePositionAfter(data.allFirebaseData.totalCount)}><Icon
-                            icon={arrowRightOutlined} width="25px" height="25px"/></SpanAfter>
+                        <SpanAfter onClick={() => changePositionAfter(data.allFirebaseData.totalCount)}
+                                   ishidden={maxCarousel - 1 === positionCarousel}
+                        >
+                            <Icon
+                            icon={arrowRightOutlined}
+                            width="20px"
+                            height="20px"
+                            />
+                        </SpanAfter>
                     </ContainerCarousel>
                 )
             }}
@@ -121,30 +137,121 @@ const ContainerCarousel = styled.div`
     display: flex;
     overflow: hidden;
     position: relative;
+    width: 100vw;
+    
+    a {
+      display: flex;
+      height: 100%;
+    }   
+
+`;
+
+const ContainerBlockCarousel = styled.div`
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-${props => props.positionCarousel * 100}vw);
+    transition: transform 1s ease-in-out;
+    
+    @media screen and (min-width: 750px) {
+       margin: 6rem 10rem;
+       width: calc(100vw - 20rem);
+    }
+    
+    @media screen and (min-width: 1200px) {
+       margin: 6rem 25vw;
+       width: calc(100vw - 50vw);
+       padding: 2rem 4rem;
+       background-color: ${props => props.theme.colors.dark};
+    }
+    
+    p {
+        text-align: center ;
+        color: ${props => props.theme.colors.secondary} ;
+    } 
 `;
 
 const ImgStyled = styled(Img)`
-    width: 100vw;
-    transform: translateX(-${props => props.positionCarousel * 100}vw);
-    transition: transform .8s linear;    
+    width: 100vw !important;
+    @media screen and (min-width: 750px) {
+        height: 30vh;
+        img {
+            height: 30vh !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        height: 50vh;
+        img {
+            //width: auto !important;
+            height: 50vh !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+        }
+    }    
 `;
 
 const SpanBefore = styled.span`
     position: absolute;
     z-index: 1000;
     top: 50%;
-    left: 0;
-    transform: translate(15%, -50%);
-    cursor: pointer;
+    left: .5rem;
+    padding: .5rem;
+    transform: translate(0, -50%);
+    color: ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.dark};
+    opacity: ${props => props.ishidden ? 0 : .4};
+    border-radius: 50%;
+    transition: opacity .7s linear;
+    
+    @media screen and (min-width: 750px){
+        padding: 1rem;
+        left: 1rem;
+    }
+    
+    @media screen and (min-width: 1200px){
+        left: 20%;
+    }
+    
+    &:hover {
+        opacity: ${props => !props.ishidden && .9 };
+    }
+    svg {
+      display: flex;
+    }
 `;
 
 const SpanAfter = styled.span`
     position: absolute;
     z-index: 1000;
     top: 50%;
-    right: 0;
-    transform: translate(-15%, -50%);
-    cursor: pointer;
+    right: .5rem;
+    padding: .5rem;
+    transform: translate(0, -50%);
+    color: ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.dark};
+    opacity: ${props => props.ishidden ? 0 : .4};
+    border-radius: 50%;
+    transition: opacity .7s ease-in-out;
+    
+    @media screen and (min-width: 750px){
+        padding: 1rem;
+        right: 1rem;
+    }
+    
+    @media screen and (min-width: 1200px){
+        right: 20%;
+    }
+    
+    &:hover {
+        opacity: ${props => !props.ishidden && .9 };
+    }
+    svg {
+      display: flex;
+    }
 `;
 
 
