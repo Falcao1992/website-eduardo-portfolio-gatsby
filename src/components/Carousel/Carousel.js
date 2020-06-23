@@ -92,7 +92,9 @@ const Carousel = () => {
             render={data => {
 
                 return (
-                    <ContainerCarousel>
+                    <ContainerCarousel
+                        positionCarousel={positionCarousel}
+                    >
                         {maxCarousel === null && initializeMax(data.allFirebaseData.totalCount)}
                         <SpanBefore onClick={changePositionBefore}
                                     ishidden={positionCarousel === 0}
@@ -105,7 +107,7 @@ const Carousel = () => {
                         {data.allFirebaseData.nodes.map((project) => {
                             return (
                                 <ContainerBlockCarousel key={project.key} positionCarousel={positionCarousel} >
-                                    <p>{project.key}</p>
+                                    {/*<p>{project.key}</p>*/}
                                     <Link to={`/${project.key}`}>
                                         <ImgStyled fluid={project.fileFirebase.childImageSharp.fluid}
                                                    alt={project.key}
@@ -137,8 +139,9 @@ const ContainerCarousel = styled.div`
     display: flex;
     overflow: hidden;
     position: relative;
-    width: 100vw;
-    
+    background-color: ${props => props.theme.colors.primary} ;
+    box-shadow: inset 0 0 100px ${props => props.positionCarousel * 8 + 40}px  ${props => props.theme.colors.dark};
+    transition: box-shadow 1s ease-in-out;
     a {
       display: flex;
       height: 100%;
@@ -154,15 +157,16 @@ const ContainerBlockCarousel = styled.div`
     transition: transform 1s ease-in-out;
     
     @media screen and (min-width: 750px) {
-       margin: 6rem 10rem;
-       width: calc(100vw - 20rem);
+       margin: 6rem 7rem;
+       width: calc(100vw - 14rem);
+       padding: 2rem;
+       box-shadow: inset 10px 10px 100px 36px rgba(0,0,0,0.80);  
     }
     
     @media screen and (min-width: 1200px) {
        margin: 6rem 25vw;
        width: calc(100vw - 50vw);
-       padding: 2rem 4rem;
-       background-color: ${props => props.theme.colors.dark};
+          
     }
     
     p {
@@ -185,7 +189,6 @@ const ImgStyled = styled(Img)`
     @media screen and (min-width: 1200px) {
         height: 50vh;
         img {
-            //width: auto !important;
             height: 50vh !important;
             top: 50% !important;
             left: 50% !important;
@@ -243,7 +246,7 @@ const SpanAfter = styled.span`
     }
     
     @media screen and (min-width: 1200px){
-        right: 20%;
+        right: calc(20% - 1rem);
     }
     
     &:hover {
