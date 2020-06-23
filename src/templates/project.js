@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import SEO from "../components/seo";
 import Carousel from "../components/Carousel/Carousel";
+import {Icon} from "@iconify/react";
 
 export default ({data, pageContext}) => {
     const {description, fileFirebase, key, projectTitle, technos, sourceNetlify, uid, urlImage} = data.allFirebaseData.nodes[0];
@@ -31,7 +32,7 @@ export default ({data, pageContext}) => {
             <Header namePage={key} bannerImage={bannerImage} allProjectsData={pageContext} slogan={projectTitle}/>
             <ContainerProject key={uid}>
                 <ContainerImg>
-                    <a href={urlImage} target="_blank" rel="noopener noreferrer">
+                    <a href={urlImage} target="_blank" rel="noopener noreferrer" aria-label="fullscreen">>
                         <StyledImg alt={projectTitle}
                                    fluid={fileFirebase.childImageSharp.fluid}/>
                     </a>

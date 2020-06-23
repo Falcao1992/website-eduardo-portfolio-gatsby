@@ -181,7 +181,7 @@ const MenuItem = styled.span`
     @media only screen and (min-width:750px) {
         margin: 0.5rem 1rem;
     }
-    `;
+`;
 
 const BlockHeaderText = styled.div`
     height: 100vh;

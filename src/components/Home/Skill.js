@@ -42,22 +42,16 @@ const Skill = () => {
     ];
 
     const showHelperText = (e) => {
-        console.log("show")
-        console.log(e.target.id)
         const result = [...displayHelper];
         result[e.target.id] = true;
         setDisplayHelper(result)
-        console.log("displayHelper", displayHelper)
     };
 
     const hideHelperText = (e) => {
-        console.log("hide")
         const result = [...displayHelper];
         result[e.target.id] = false;
         setDisplayHelper(result)
-        console.log("displayHelper", displayHelper)
     };
-
 
     return (
         <ContainerSkill id="skill">
@@ -142,9 +136,7 @@ const SpanStyled = styled.span`
         display: block;
         position: absolute;
         background-color: ${props => props.theme.colors.dark};
-        color: ${props => props.theme.colors.secondary};
-        //border: 1px solid ${props => props.theme.colors.secondary};
-        //border-radius: 25% 25% 0 0;    
+        color: ${props => props.theme.colors.secondary}; 
         text-align: center;
         font-size: .8rem;
         padding: .6rem .6rem ${props => props.padding === "small" ? "1.2rem" : "1rem"};
@@ -152,8 +144,7 @@ const SpanStyled = styled.span`
         z-index: ${props => props.display === "hidden" ? "1" : "2"};
         transform: ${props => props.display === "hidden" ? "initial" : "translate(0, -100%)"};
         transition: transform .3s linear .1s;  
-    }
-     
+    }  
 `;
 
 export default Skill

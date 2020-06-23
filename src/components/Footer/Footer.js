@@ -16,6 +16,7 @@ const Footer = () => {
                     <a href="https://github.com/Falcao1992?tab=repositories"
                        target="_blank"
                        rel="noopener noreferrer"
+                       aria-label="Github"
                     >
                         <Icon icon={logoGithub} width="35" height="35"/>
                     </a>
@@ -24,6 +25,7 @@ const Footer = () => {
                     <a href="https://www.linkedin.com/in/eduardo-l%C3%A9pine-d%C3%A9v-web-full-stack-320ba5194/"
                        target="_blank"
                        rel="noopener noreferrer"
+                       aria-label="Linkedin"
                     >
                         <Icon icon={logoLinkedin} width="35" height="35"/>
                     </a>
@@ -32,7 +34,7 @@ const Footer = () => {
                     <a href="mailto:eduardo.lepine.pro@gmail.com" aria-label="mail"><Icon icon={mailRu} width="35" height="35"/></a>
                 </BlockIcon>
                 <BlockIcon>
-                    <a href="tel:0618478933" aria-label="telephone"><Icon icon={mobilePhoneSolid} width="35" height="35"/></a>
+                    <a href="tel:0618478933" aria-label="phone"><Icon icon={mobilePhoneSolid} width="35" height="35"/></a>
                 </BlockIcon>
             </BlockLogo>
             <BlockText>

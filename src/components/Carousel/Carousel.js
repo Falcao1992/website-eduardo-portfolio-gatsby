@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Img from "gatsby-image"
 import {graphql, Link, StaticQuery} from "gatsby";
-
 import {Icon} from '@iconify/react';
 import arrowLeftOutlined from '@iconify/icons-ant-design/arrow-left-outlined';
 import arrowRightOutlined from '@iconify/icons-ant-design/arrow-right-outlined';
@@ -28,7 +27,6 @@ const Carousel = () => {
                     setDirection('DSC');
                 }
                 setPositionCarousel(positionCarouselRef + 1);
-                console.log("augmente")
             } else {
                 if (positionCarouselRef <= 1 ) {
                     setDirection('ASD')
@@ -58,7 +56,6 @@ const Carousel = () => {
             }
             setPositionCarousel(positionCarousel + 1);
         } else {
-            //maxCarousel = max;
             console.log("max atteint")
         }
     };
@@ -107,7 +104,6 @@ const Carousel = () => {
                         {data.allFirebaseData.nodes.map((project) => {
                             return (
                                 <ContainerBlockCarousel key={project.key} positionCarousel={positionCarousel} >
-                                    {/*<p>{project.key}</p>*/}
                                     <Link to={`/${project.key}`}>
                                         <ImgStyled fluid={project.fileFirebase.childImageSharp.fluid}
                                                    alt={project.key}

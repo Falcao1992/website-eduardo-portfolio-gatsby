@@ -25,12 +25,15 @@ const About = () => (
                     <TitleHome>Développeur FulltStack junior React/Node</TitleHome>
                     <SubtitleStyled>A Propos de moi :</SubtitleStyled>
                     <ContainerBlockAbout>
-                        <ImgStyled fluid={profilPicture}/>
+                        <ImgStyled
+                            fluid={profilPicture}
+                            alt="Eduardo Lépine"
+                        />
                         <DescriptionStyled><span>B</span>onjour et bienvenue sur mon portfolio !
-                            Je m’appelle Adeline, je suis anciennement diplômée d’un CAP petite enfance et d’un bac pro ASSP.
+                            Je m’appelle Eduardo Lépine, je suis anciennement diplômée d’un Bac Pro en hôtellerie-restauration.
                             J'ai souhaité me réorienter dans un domaine qui me plait davantage.
                             C’est pourquoi, je me suis intéressée de plus près à ce que je voulais réellement, à mes réelles passions, et j'en ai découvert une : le développement web !
-                            Aujourd’hui, je suis très motivée et je suis actuellement en formation de développeur web junior chez OpenClassrooms.
+                            Aujourd’hui, je suis très motivée et c'est pourquoi j'ai suivi pendant 9 la formation de Développeur FulltStack à la Wild Code School.
                             Vous découvrirez dans ce portfolio, mes compétences, mon parcours ainsi que les projets que j'ai pu réaliser.
                             Si vous avez des questions, n'hésitez pas à me contacter.</DescriptionStyled>
                     </ContainerBlockAbout>
@@ -39,6 +42,7 @@ const About = () => (
                             href={cv}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Curiculum Vitae"
                         >
                             <ButtonCV className="learn">Voir mon cv</ButtonCV>
                         </a>

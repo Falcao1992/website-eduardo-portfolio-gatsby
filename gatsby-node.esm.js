@@ -160,7 +160,6 @@ exports.createPages = async ({graphql, actions}) => {
             component: path.resolve("./src/templates/project.js"),
             context: {
                 key: key,
-                //allProjectsTitle: firebaseDataBanner.data.allFirebaseData.nodes
             }
         })
     });

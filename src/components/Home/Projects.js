@@ -2,15 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import {Link} from 'gatsby'
 import Img from "gatsby-image"
-const Projects = ({allProjectsBanner}) => {
 
-    console.log("allProjectsBanner", allProjectsBanner)
+const Projects = ({allProjectsBanner}) => {
 
     return (
         <ContainerProjects id="projects">
             <BlockTitleText>
                 <SubtitleStyled>Mes Projects :</SubtitleStyled>
-                <TextExplanation>Voici un ensemble de mes realisations, pendant ma formation, ainsi que des projets perso </TextExplanation>
+                <TextExplanation>Voici un ensemble de mes realisations, pendant ma formation, ainsi que des projets personnels </TextExplanation>
             </BlockTitleText>
             <ContainerProjectsBanner>
                 {allProjectsBanner.filter(project => project.key !== "home").map(projectBanner => {
@@ -19,13 +18,11 @@ const Projects = ({allProjectsBanner}) => {
                             <Link to={`/${projectBanner.key}`}><ImgStyled fluid={projectBanner.fileFirebase.childImageSharp.fluid}
                                                                           objectFit="cover"
 
-
                             /></Link>
                         </BlockProjectBanner>
                     )
                 })}
             </ContainerProjectsBanner>
-
         </ContainerProjects>
     )
 };
@@ -84,7 +81,5 @@ const ImgStyled = styled(Img)`
         z-index: auto;
     }
 `;
-
-
 
 export default Projects

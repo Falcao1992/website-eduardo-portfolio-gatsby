@@ -2,7 +2,6 @@ import React from "react"
 import "./layout.css"
 import theme from "../assets/theme";
 import {ThemeProvider} from "styled-components";
-//import {Footer} from "./Footer";
 import styled from "styled-components";
 import Footer from "./Footer/Footer";
 
