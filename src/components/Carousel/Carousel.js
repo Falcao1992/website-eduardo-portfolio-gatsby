@@ -140,7 +140,7 @@ const ContainerCarousel = styled.div`
     overflow: hidden;
     position: relative;
     background-color: ${props => props.theme.colors.primary} ;
-    box-shadow: inset 0 0 100px ${props => props.positionCarousel * 8 + 40}px  ${props => props.theme.colors.dark};
+    box-shadow: inset 0 0 100px ${props => props.positionCarousel * 9 + 60}px  ${props => props.theme.colors.dark};
     transition: box-shadow 1s ease-in-out;
     a {
       display: flex;

@@ -4,8 +4,8 @@ require("dotenv").config({
 
 module.exports = {
     siteMetadata: {
-        title: `Portfolio d'Eduardo Lépine`,
-        description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+        title: `'Eduardo Lépine | Développeur Web Junior`,
+        description: `Issue de la formation Développeur full-stack React/Node.js à la Wild Code School de Tours, Création et intégration de sites Internet Responsive, référencement SEO avec GatsbyJs et pour le traitement de données avec NodeJs/Express/MySQL/Firebase.`,
         author: `Eduardo Lépine`,
     },
     plugins: [
@@ -62,22 +62,18 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-prefetch-google-fonts`,
+            resolve: `gatsby-plugin-google-fonts`,
             options: {
                 fonts: [
-                    {
-                        family: `Raleway`,
-                        variants: [`300`,`400`,`500`, `700`]
-                    },
-                    {
-                        family: `Pinyon Script`,
-                    },
+                    `Pinyon Script`,
+                    `Raleway\:300,400,500,700` // you can also specify font weights and styles
                 ],
-            },
-        },
+                display: 'swap'
+            }
+        }
+
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,
     ],
-
 };
