@@ -2,13 +2,48 @@ require("dotenv").config({
     path: `.env.${process.env.NODE_ENV}`,
 });
 
+const {
+    NODE_ENV,
+    URL: NETLIFY_SITE_URL = 'https://eduardolepine.netlify.app',
+    DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+    CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env;
+
+const isNetlifyProduction = NETLIFY_ENV === 'production';
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+
 module.exports = {
     siteMetadata: {
-        title: `'Eduardo Lépine | Développeur Web Junior`,
+        title: `Eduardo Lépine | Développeur Web Junior`,
         description: `Issue de la formation Développeur full-stack React/Node.js à la Wild Code School de Tours, Création et intégration de sites Internet Responsive, référencement SEO avec GatsbyJs et pour le traitement de données avec NodeJs/Express/MySQL/Firebase.`,
         author: `Eduardo Lépine`,
+        siteUrl: siteUrl,
+        social: {
+            twitter: `eduardo`,
+        },
     },
     plugins: [
+        {
+            resolve: 'gatsby-plugin-robots-txt',
+            options: {
+                resolveEnv: () => NETLIFY_ENV,
+                env: {
+                    production: {
+                        policy: [{userAgent: '*'}],
+                    },
+                    'branch-deploy': {
+                        policy: [{userAgent: '*', disallow: ['/']}],
+                        sitemap: null,
+                        host: null,
+                    },
+                    'deploy-preview': {
+                        policy: [{userAgent: '*', disallow: ['/']}],
+                        sitemap: null,
+                        host: null,
+                    },
+                },
+            },
+        },
         `gatsby-plugin-react-helmet`,
         {
             resolve: `gatsby-source-filesystem`,
@@ -19,15 +54,17 @@ module.exports = {
         },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
+        'gatsby-plugin-offline',
+        `gatsby-plugin-sitemap`,
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `gatsby-starter-default`,
-                short_name: `starter`,
+                name: `Eduardo Lépine | Développeur Web Junior`,
+                short_name: `Eduardo Lépine | Dév Web Junior`,
                 start_url: `/`,
-                background_color: `#663399`,
-                theme_color: `#663399`,
-                display: `minimal-ui`,
+                background_color: `black`,
+                theme_color: `black`,
+                display: `standalone`,
                 icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
             },
         },
@@ -74,6 +111,5 @@ module.exports = {
 
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
-        // `gatsby-plugin-offline`,
     ],
 };

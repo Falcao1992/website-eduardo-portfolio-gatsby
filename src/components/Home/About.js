@@ -149,6 +149,7 @@ const ImgStyled = styled(Img)`
     border-radius: 50%;
     width: 50%;
     margin: 2rem 0 4rem;
+    background-color: lightgray;
     
     @media only screen and (min-width: 750px) {
         width: 28%;
