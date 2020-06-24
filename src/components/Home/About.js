@@ -55,11 +55,7 @@ const About = () => (
 
 const ContainerAbout = styled.section`
     background-color: ${props => props.theme.colors.dark};
-    z-index: -1;
     position: relative;
-    @media screen and (min-width: 750px) {
-        z-index: auto;
-    }
 `;
 
 const TitleHome = styled.h1`

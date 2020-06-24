@@ -6,7 +6,6 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import SEO from "../components/seo";
 import Carousel from "../components/Carousel/Carousel";
-import {Icon} from "@iconify/react";
 
 export default ({data, pageContext}) => {
     const {description, fileFirebase, key, projectTitle, technos, sourceNetlify, uid, urlImage} = data.allFirebaseData.nodes[0];
@@ -32,7 +31,7 @@ export default ({data, pageContext}) => {
             <Header namePage={key} bannerImage={bannerImage} allProjectsData={pageContext} slogan={projectTitle}/>
             <ContainerProject key={uid}>
                 <ContainerImg>
-                    <a href={urlImage} target="_blank" rel="noopener noreferrer" aria-label="fullscreen">>
+                    <a href={urlImage} target="_blank" rel="noopener noreferrer" aria-label="fullscreen">
                         <StyledImg alt={projectTitle}
                                    fluid={fileFirebase.childImageSharp.fluid}/>
                     </a>
@@ -79,11 +78,9 @@ export const query = graphql`
 const ContainerProject = styled.article`
     position: relative;
     background-color: ${props => props.theme.colors.dark};
-    z-index: -1;
     padding: 2rem 0;
     
     @media screen and (min-width: 750px) {
-        z-index: auto;
         display: flex;
         justify-content: space-evenly;
         padding: 4rem 0;

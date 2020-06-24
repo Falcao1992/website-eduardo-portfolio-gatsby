@@ -74,11 +74,9 @@ const Skill = () => {
 
 const ContainerSkill = styled.section`
     background-color: ${props => props.theme.colors.primary};
-    z-index: -1;
     position: relative;
     
     @media screen and (min-width: 750px) {
-        z-index: 0;
         width: 90%;
         margin: auto;
     }

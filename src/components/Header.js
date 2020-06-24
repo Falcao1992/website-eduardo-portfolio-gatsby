@@ -75,6 +75,7 @@ const StyledBackgroundSection = styled(BackgroundImage)`
     color: ${props => props.theme.colors.primary};
     text-transform: uppercase;
     height: 100vh;
+    z-index: 1000;
     &::after {
         height: calc(100% - 3rem) !important;
         top: unset !important;
