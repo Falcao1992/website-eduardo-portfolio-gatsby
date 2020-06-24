@@ -5,6 +5,7 @@ import {graphql, Link, StaticQuery} from "gatsby";
 import {Icon} from '@iconify/react';
 import arrowLeftOutlined from '@iconify/icons-ant-design/arrow-left-outlined';
 import arrowRightOutlined from '@iconify/icons-ant-design/arrow-right-outlined';
+import lampLight from "../../images/lampLight.png"
 
 const Carousel = () => {
 
@@ -15,7 +16,7 @@ const Carousel = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             turnCarousel(positionCarousel)
-        }, 8000);
+        }, 7000);
         return () => clearTimeout(timer)
 
     }, [positionCarousel]);
@@ -67,8 +68,8 @@ const Carousel = () => {
     return (
         <StaticQuery
             query={graphql`
-                query imageCarousel {
-                    allFirebaseData(filter: {type: {eq: "banner"}, key: {ne: "home"}}) {
+                query {
+                    imagesCarousel: allFirebaseData(filter: {type: {eq: "banner"}, key: {ne: "home"}}) {
                         totalCount
                         nodes {
                             key
@@ -82,47 +83,54 @@ const Carousel = () => {
                                 }
                             }
                         }
+                    }
+                    pictureDesktopDev: file(relativePath: { eq: "pictureDesktopDev.png" }) {
+                        childImageSharp {
+                            fluid(quality: 90, maxWidth: 800) {
+                                ...GatsbyImageSharpFluid_withWebp
+                            }
+                        }
                     }   
                 }    
             `}
 
             render={data => {
-
                 return (
-                    <ContainerCarousel
+                    <ContainerSectionCarousel
                         positionCarousel={positionCarousel}
                     >
-                        {maxCarousel === null && initializeMax(data.allFirebaseData.totalCount)}
-                        <SpanBefore onClick={changePositionBefore}
-                                    ishidden={positionCarousel === 0}
-                        >
-                            <Icon icon={arrowLeftOutlined}
-                                  width="20px"
-                                  height="20px"
+                        {maxCarousel === null && initializeMax(data.imagesCarousel.totalCount)}
+
+                        <ContainerBlockPictureDesktop>
+                            <Img fluid={data.pictureDesktopDev.childImageSharp.fluid}
+                                 alt="pictureDesktopDev"
                             />
-                        </SpanBefore>
-                        {data.allFirebaseData.nodes.map((project) => {
+                            <BlockLamp positionCarousel={positionCarousel}>
+                                    <img src={lampLight} alt="lampLight"/>
+                            </BlockLamp>
+                        </ContainerBlockPictureDesktop>
+                        <ContainerCarousel>
+                            <SpanBefore onClick={changePositionBefore} ishidden={positionCarousel === 0}><Icon icon={arrowLeftOutlined} width="20px" height="20px"/></SpanBefore>
+                            {data.imagesCarousel.nodes.map((project) => {
                             return (
-                                <ContainerBlockCarousel key={project.key} positionCarousel={positionCarousel} >
+                                <BlockCarousel key={project.key} positionCarousel={positionCarousel} >
                                     <Link to={`/${project.key}`}>
-                                        <ImgStyled fluid={project.fileFirebase.childImageSharp.fluid}
-                                                   alt={project.key}
-                                                   positionCarousel={positionCarousel}
-                                        />
+                                        <ContainerImageCarousel>
+                                            <ImgStyled fluid={project.fileFirebase.childImageSharp.fluid}
+                                                       alt={project.key}
+                                                       positionCarousel={positionCarousel}
+                                                       //objectFit="cover"
+                                                       //objectPosition="50% 50%"
+                                            />
+                                        </ContainerImageCarousel>
                                     </Link>
-                                </ContainerBlockCarousel>
+                                </BlockCarousel>
                             )
                         })}
-                        <SpanAfter onClick={() => changePositionAfter(data.allFirebaseData.totalCount)}
-                                   ishidden={maxCarousel - 1 === positionCarousel}
-                        >
-                            <Icon
-                            icon={arrowRightOutlined}
-                            width="20px"
-                            height="20px"
-                            />
-                        </SpanAfter>
-                    </ContainerCarousel>
+                            <SpanAfter onClick={() => changePositionAfter(data.imagesCarousel.totalCount)} ishidden={maxCarousel - 1 === positionCarousel}><Icon icon={arrowRightOutlined} width="20px" height="20px"/></SpanAfter>
+                        </ContainerCarousel>
+
+                    </ContainerSectionCarousel>
                 )
             }}
         />
@@ -131,64 +139,117 @@ const Carousel = () => {
 
 export default Carousel
 
-const ContainerCarousel = styled.div`
+const ContainerSectionCarousel = styled.div`
     display: flex;
-    overflow: hidden;
-    position: relative;
-    background-color: ${props => props.theme.colors.primary} ;
-    box-shadow: inset 0 0 100px ${props => props.positionCarousel * 9 + 60}px  ${props => props.theme.colors.dark};
-    transition: box-shadow 1s ease-in-out;
-    a {
-      display: flex;
-      height: 100%;
-    }   
-
+    @media screen and (min-width: 750px) {
+        overflow: hidden;
+        padding: 4rem 2rem;
+        background-color: ${props => props.theme.colors.primary} ;
+        box-shadow: inset 0 0 100px ${props => props.positionCarousel * 9 + 50}px  ${props => props.theme.colors.dark};
+        transition: box-shadow 3s ease-in-out;
+    }
 `;
 
-const ContainerBlockCarousel = styled.div`
+const ContainerBlockPictureDesktop = styled.div`
+    display: none;
+    @media screen and (min-width: 750px) {
+        align-self: center;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        position: relative;      
+        > div {
+            width: 30vw;
+        }
+    }
+`;
+
+const BlockLamp = styled.div`
+    @media screen and (min-width: 750px) {
+        position: absolute;
+        top: -2rem;
+        right: 0;
+        width: 2.5rem !important;
+        transition: box-shadow 3s linear;
+        img {
+            width: 100%;
+        } 
+        :before {
+            position: absolute;
+            top: -${props => props.positionCarousel / 3 + 0.5}rem;
+            left: 50%;
+            content: "";
+            box-shadow: 0 0 80px ${props => props.positionCarousel * 7 + 20}px #f5faa9cf;
+            transition: all 2s linear;
+        }
+        :after {
+            position: absolute;
+            bottom: -.5rem;
+            left: 50%;
+            content: "";
+            box-shadow: 0 0 80px ${props => props.positionCarousel * 7 + 10}px #f5faa9cf;
+            transition: all 2s linear;
+        }  
+    }       
+`;
+
+const ContainerCarousel = styled.div`
     width: 100vw;
     display: flex;
-    flex-direction: column;
-    transform: translateX(-${props => props.positionCarousel * 100}vw);
-    transition: transform 1s ease-in-out;
+    position: relative;
+    overflow: hidden;
     
     @media screen and (min-width: 750px) {
-       margin: 6rem 7rem;
-       width: calc(100vw - 14rem);
-       padding: 2rem;
-       box-shadow: inset 10px 10px 100px 36px rgba(0,0,0,0.80);  
+        width: 50vw;
+        margin-left: 8vw;
     }
     
     @media screen and (min-width: 1200px) {
-       margin: 6rem 25vw;
-       width: calc(100vw - 50vw);
-          
+        width: 40vw;
+        margin-left: 15vw;
+    }
+`;
+
+const BlockCarousel = styled.div`
+    align-self: center;
+    transform: translateX(-${props => props.positionCarousel * 100}vw);
+    transition: transform 1.2s ease-in-out;
+    
+    @media screen and (min-width: 750px) {
+        width: 50vw;
+        transform: translateX(-${props => props.positionCarousel * 100}vw);
+        transition: transform 1.2s ease-in-out;
+        margin-right: 50vw;   
     }
     
-    p {
-        text-align: center ;
-        color: ${props => props.theme.colors.secondary} ;
-    } 
+    @media screen and (min-width: 1200px) {
+        width: 40vw;
+        transform: translateX(-${props => props.positionCarousel * 100}vw);
+        transition: transform 1.2s ease-in-out;
+        margin-right: 60vw; 
+    }
+`;
+
+const ContainerImageCarousel = styled.div`
+    width: 100vw;
 `;
 
 const ImgStyled = styled(Img)`
-    width: 100vw !important;
     @media screen and (min-width: 750px) {
-        height: 30vh;
+        height: 25vh;
         img {
-            height: 30vh !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
+            height: 25vh !important;
+            width: 50vw !important;
+            padding: .5rem;
+            //background-color: ${props => props.theme.colors.dark};
+            box-shadow: inset 10px 10px 100px 36px rgba(0,0,0,0.80);  
         }
     }
     @media screen and (min-width: 1200px) {
-        height: 50vh;
+        height: 60vh;
         img {
-            height: 50vh !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
+            height: 60vh !important;
+            width: 40vw !important;
         }
     }    
 `;
@@ -208,11 +269,9 @@ const SpanBefore = styled.span`
     
     @media screen and (min-width: 750px){
         padding: 1rem;
-        left: 1rem;
     }
     
     @media screen and (min-width: 1200px){
-        left: 20%;
     }
     
     &:hover {
@@ -238,11 +297,9 @@ const SpanAfter = styled.span`
     
     @media screen and (min-width: 750px){
         padding: 1rem;
-        right: 1rem;
     }
     
     @media screen and (min-width: 1200px){
-        right: calc(20% - 1rem);
     }
     
     &:hover {

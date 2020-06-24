@@ -76,20 +76,21 @@ const StyledBackgroundSection = styled(BackgroundImage)`
     text-transform: uppercase;
     height: 100vh;
     z-index: 1000;
+    background-blend-mode: overlay;
     &::after {
         height: calc(100% - 3rem) !important;
         top: unset !important;
         bottom: 0;
     }
     @media only screen and (min-width:750px) {
-        height: 35vh;
+        height: 75vh;
         &::after {
             height: 100% !important;
             top: 0 !important;
         }
     }
     @media only screen and (min-width:1200px) {
-        height: 70vh;
+        height: 100vh;
     }
 `;
 
@@ -197,10 +198,10 @@ const BlockHeaderText = styled.div`
         padding-bottom: 1rem;
     }   
     @media only screen and (min-width:750px) {
-        height: calc(35vh - 3.5rem);
+        height: calc(75vh - 3.5rem);
     }
     @media only screen and (min-width:1200px) {
-        height: calc(70vh - 3.5rem);
+        height: calc(100vh - 3.5rem);
     }
 `;
 
