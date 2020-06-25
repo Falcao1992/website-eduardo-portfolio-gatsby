@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import styled from "styled-components";
 import Img from "gatsby-image"
 import {graphql, Link, StaticQuery} from "gatsby";
@@ -19,9 +19,9 @@ const Carousel = () => {
         }, 7000);
         return () => clearTimeout(timer)
 
-    }, [positionCarousel]);
+    });
 
-    const turnCarousel = (positionCarouselRef) => {
+    const turnCarousel = useCallback((positionCarouselRef) => {
         if (maxCarousel !== null) {
             if (direction === "ASD") {
                 if (positionCarouselRef === maxCarousel - 2 || positionCarouselRef > maxCarousel - 2) {
@@ -35,7 +35,7 @@ const Carousel = () => {
                 setPositionCarousel(positionCarouselRef - 1);
             }
         }
-    };
+    }, [direction, maxCarousel]);
 
     const changePositionBefore = () => {
         if (positionCarousel !== 0) {

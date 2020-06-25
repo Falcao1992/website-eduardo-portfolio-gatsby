@@ -10,20 +10,21 @@ export default ({className, namePage, bannerImage, slogan}) => {
 
     const [burgerIsActive, setBurgerIsActive] = useState(false);
     const [directionMoveHeader, setDirectionMoveHeader] = useState("DSC");
-    const [isLoading, setIsLoading] = useState(true);
-
 
     useEffect(  () => {
-        console.log(isLoading, "isLoading")
-        console.log(directionMoveHeader, "directionMoveHeader")
-        let timer = setInterval(changeDirectionHeader, 8000)
-        return () => clearInterval(timer)
-        //changeDirectionHeader();
-    },[directionMoveHeader, isLoading]);
+        let timerOut = setTimeout(() => {
+            setDirectionMoveHeader((directionMoveHeader) => directionMoveHeader === "DSC" ? "ASD" : "DSC")
+        }, 0);
+        return () => clearTimeout(timerOut);
+    },[]);
 
-    const changeDirectionHeader = () => {
-        setDirectionMoveHeader((directionMoveHeader) => directionMoveHeader === "DSC" ? "ASD" : "DSC")
-    };
+    useEffect(  () => {
+        let timer = setInterval(() => {
+            setDirectionMoveHeader((directionMoveHeader) => directionMoveHeader === "DSC" ? "ASD" : "DSC")
+            console.log('change direction header')
+        }, 25000);
+        return () => clearInterval(timer)
+    },[]);
 
     const handleBurger = (e) => {
         e.preventDefault();
@@ -53,7 +54,6 @@ export default ({className, namePage, bannerImage, slogan}) => {
     };
 
     return (
-
         <>
             <StyledBackgroundSection
                 Tag="header"
@@ -102,9 +102,6 @@ const StyledBackgroundSection = styled(BackgroundImage)`
     z-index: 1000;
     //background-blend-mode: overlay;
     &::after {
-        //height: calc(100% - 3rem) !important;
-        //top: unset !important;
-        //bottom: 0;
         transition: background-position 29s linear, opacity 0.5s ease 500ms !important;
     }
     &::before {
@@ -250,5 +247,3 @@ const ContainerTypewriter = styled.div`
         }
     }
 `;
-
-
