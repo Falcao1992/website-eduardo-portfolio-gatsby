@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link} from 'gatsby'
 import styled from 'styled-components'
 import BackgroundImage from 'gatsby-background-image-es5'
@@ -9,6 +9,21 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 export default ({className, namePage, bannerImage, slogan}) => {
 
     const [burgerIsActive, setBurgerIsActive] = useState(false);
+    const [directionMoveHeader, setDirectionMoveHeader] = useState("DSC");
+    const [isLoading, setIsLoading] = useState(true);
+
+
+    useEffect(  () => {
+        console.log(isLoading, "isLoading")
+        console.log(directionMoveHeader, "directionMoveHeader")
+        let timer = setInterval(changeDirectionHeader, 8000)
+        return () => clearInterval(timer)
+        //changeDirectionHeader();
+    },[directionMoveHeader, isLoading]);
+
+    const changeDirectionHeader = () => {
+        setDirectionMoveHeader((directionMoveHeader) => directionMoveHeader === "DSC" ? "ASD" : "DSC")
+    };
 
     const handleBurger = (e) => {
         e.preventDefault();
@@ -38,13 +53,23 @@ export default ({className, namePage, bannerImage, slogan}) => {
     };
 
     return (
+
         <>
             <StyledBackgroundSection
                 Tag="header"
                 className={className}
                 fluid={[`linear-gradient(180deg, rgba(0, 0, 0, 0.85), rgba(28, 28, 28, 0.2))`, bannerImage]}
                 alt={namePage}
+                directionMoveHeader={directionMoveHeader}
+                fadeIn={false}
+                style={{
+                    // Defaults are overwrite-able by setting one or each of the following:
+                    //backgroundSize: '',
+                    backgroundPosition: `${directionMoveHeader === "DSC" ? "10% 100%" : "90% 0"}`,
+                    //backgroundRepeat: '',
+                }}
             >
+                {console.log("render header")}
                 <NavStyled>
                     <ListItemIconStyled>
                         <MenuIcon fontSize="large" onClick={handleBurger}/>
@@ -74,13 +99,16 @@ export default ({className, namePage, bannerImage, slogan}) => {
 const StyledBackgroundSection = styled(BackgroundImage)`
     color: ${props => props.theme.colors.primary};
     text-transform: uppercase;
-    height: 100vh;
     z-index: 1000;
-    background-blend-mode: overlay;
+    //background-blend-mode: overlay;
     &::after {
-        height: calc(100% - 3rem) !important;
-        top: unset !important;
-        bottom: 0;
+        //height: calc(100% - 3rem) !important;
+        //top: unset !important;
+        //bottom: 0;
+        transition: background-position 29s linear, opacity 0.5s ease 500ms !important;
+    }
+    &::before {
+        transition: background-position 29s linear, opacity 0.5s ease 500ms !important;
     }
     @media only screen and (min-width:750px) {
         height: 75vh;

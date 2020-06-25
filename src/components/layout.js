@@ -31,6 +31,7 @@ const LayoutContainer = styled.div`
     p {
         font-weight: 300;
     }
+
 `;
 
 

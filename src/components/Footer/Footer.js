@@ -22,7 +22,7 @@ const Footer = () => {
                     </a>
                 </BlockIcon>
                 <BlockIcon>
-                    <a href="https://www.linkedin.com/in/eduardo-l%C3%A9pine-d%C3%A9v-web-full-stack-320ba5194/"
+                    <a href="https://www.linkedin.com/in/eduardo-l%C3%A9pine-320ba5194/"
                        target="_blank"
                        rel="noopener noreferrer"
                        aria-label="Linkedin"
