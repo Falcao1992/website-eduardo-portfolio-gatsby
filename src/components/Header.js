@@ -80,8 +80,8 @@ export default ({className, namePage, bannerImage, slogan}) => {
                         <Link to="/" ><MenuItem isActive={namePage === "home"}>Accueil</MenuItem></Link>
                         <Link to={`/#about`} ><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "about"}>A propos de moi</MenuItem></Link>
                         <Link to={`/#skill`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "skill"}>Compétences</MenuItem></Link>
-                        <Link to={`/#projects`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "projects"}>projects</MenuItem></Link>
-                        <Link to={`/#contact`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "contact"}>contact</MenuItem></Link>
+                        <Link to={`/#projects`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "projects"}>Projets</MenuItem></Link>
+                        <Link to={`/#contact`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "contact"}>Contact</MenuItem></Link>
                     </ContainerLink>
                 </NavStyled>
 
