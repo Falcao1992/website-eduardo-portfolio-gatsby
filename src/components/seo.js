@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import {Helmet} from "react-helmet"
 import {useStaticQuery, graphql} from "gatsby"
 
+
 function SEO({description, lang, meta, keywords, title}) {
 
 
@@ -14,6 +15,7 @@ function SEO({description, lang, meta, keywords, title}) {
                     title
                     description
                     author
+                    siteUrl
                 }
             }
             MockupPortfolioEduardoLepine: file(relativePath: {eq: "MockupPortfolioEduardoLepine.png"}) {
@@ -29,9 +31,16 @@ function SEO({description, lang, meta, keywords, title}) {
         `
     );
 
+
+
     const imageSeo = MockupPortfolioEduardoLepine.childImageSharp.resize;
     const metaDescription = description || site.siteMetadata.description;
     const image = imageSeo && imageSeo.src ? `${site.siteMetadata.siteUrl}${imageSeo.src}` : null;
+
+    console.log(site.siteMetadata.siteUrl, "site.siteMetadata.siteUrl")
+    console.log(image, "image")
+    console.log(imageSeo, "imageSeo")
+    console.log(imageSeo.src, "imageSeo.src")
 
     return (
         <Helmet
