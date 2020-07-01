@@ -73,11 +73,11 @@ export default ({className, namePage, bannerImage, slogan}) => {
                 <NavStyled>
                     <ListItemIconStyled>
                         <MenuIcon fontSize="large" onClick={handleBurger}/>
-                        <Link to="/"><MenuItem isActive={namePage === "home"}>Accueil</MenuItem></Link>
+                        <Link to="/"><MenuItem isActive={namePage === "home"}>Portfolio Eduardo Lépine</MenuItem></Link>
                     </ListItemIconStyled>
 
                     <ContainerLink burgerIsActive={burgerIsActive}>
-                        <Link to="/" ><MenuItem isActive={namePage === "home"}>Accueil</MenuItem></Link>
+                        <Link to="/" ><MenuItem isActive={namePage === "home"}>Portfolio Eduardo Lépine</MenuItem></Link>
                         <Link to={`/#about`} ><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "about"}>A propos de moi</MenuItem></Link>
                         <Link to={`/#skill`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "skill"}>Compétences</MenuItem></Link>
                         <Link to={`/#projects`}><MenuItem onClick={closeBurgerTimeout} isActive={namePage === "projects"}>Projets</MenuItem></Link>

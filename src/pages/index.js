@@ -31,7 +31,7 @@ const IndexPage = ({data}) => {
 
     return (
         <Layout>
-            <SEO title="Accueil" />
+            <SEO title="Portfolio Eduardo Lépine" />
             <Header namePage={"home"} bannerImage={bannerImageHome} slogan={"Bienvenue sur mon Portfolio "}/>
             <About />
             <Skill />

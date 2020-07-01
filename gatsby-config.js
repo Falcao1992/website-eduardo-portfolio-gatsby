@@ -17,7 +17,7 @@ module.exports = {
         title: `Eduardo Lépine | Développeur Web Junior`,
         description: `Issue de la formation Développeur full-stack React/Node.js à la Wild Code School de Tours, Création et intégration de sites Internet Responsive, référencement SEO avec GatsbyJs et pour le traitement de données avec NodeJs/Express/MySQL/Firebase.`,
         author: `Eduardo Lépine`,
-        siteUrl: `https://eduardolepine.netlify.app/`,
+        siteUrl: siteUrl,
         social: {
             twitter: `eduardo`,
         },
