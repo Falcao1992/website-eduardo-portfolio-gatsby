@@ -6,7 +6,7 @@ import {useStaticQuery, graphql} from "gatsby"
 function SEO({description, lang, meta, keywords, title}) {
 
 
-    const {site, interestPicture} = useStaticQuery(
+    const {site, MockupPortfolioEduardoLepine} = useStaticQuery(
         graphql`
         query {
             site {
@@ -16,7 +16,7 @@ function SEO({description, lang, meta, keywords, title}) {
                     author
                 }
             }
-            interestPicture: file(relativePath: {eq: "gatsby-astronaut.png"}) {
+            MockupPortfolioEduardoLepine: file(relativePath: {eq: "MockupPortfolioEduardoLepine.png"}) {
                 childImageSharp {
                     resize(width: 1200) {
                         src
@@ -29,7 +29,7 @@ function SEO({description, lang, meta, keywords, title}) {
         `
     );
 
-    const imageSeo = interestPicture.childImageSharp.resize;
+    const imageSeo = MockupPortfolioEduardoLepine.childImageSharp.resize;
     const metaDescription = description || site.siteMetadata.description;
     const image = imageSeo && imageSeo.src ? `${site.siteMetadata.siteUrl}${imageSeo.src}` : null;
 

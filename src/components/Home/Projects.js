@@ -9,7 +9,7 @@ const Projects = ({allProjectsBanner}) => {
         <ContainerProjects id="projects">
             <BlockTitleText>
                 <SubtitleStyled>Mes Projects :</SubtitleStyled>
-                <TextExplanation>Voici un ensemble de mes realisations, pendant ma formation, ainsi que des projets personnels </TextExplanation>
+                <TextExplanation>Voici un ensemble de mes realisations, pendant ma formation, ainsi que des projets personnels <br/>Cliquez sur un projet pour plus de detail</TextExplanation>
             </BlockTitleText>
             <ContainerProjectsBanner>
                 {allProjectsBanner.filter(project => project.key !== "home").map(projectBanner => {

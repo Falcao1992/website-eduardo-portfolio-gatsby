@@ -76,7 +76,7 @@ const Carousel = () => {
                             urlImage
                             fileFirebase {
                                 childImageSharp {
-                                    fluid {
+                                    fluid(maxWidth: 400, maxHeight: 270) {
                                         originalName
                                         ...GatsbyImageSharpFluid
                                     }
