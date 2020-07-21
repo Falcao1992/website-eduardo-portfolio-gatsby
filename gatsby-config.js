@@ -112,7 +112,7 @@ module.exports = {
             resolve: `gatsby-plugin-google-analytics`,
             options: {
                 // replace "UA-XXXXXXXXX-X" with your own Tracking ID
-                trackingId: "UA-158070915-1",
+                trackingId: process.env.GATSBY_APP_TRACKING_ID,
                 head: true,
             },
         },
