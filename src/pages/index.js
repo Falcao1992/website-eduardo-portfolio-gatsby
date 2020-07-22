@@ -53,7 +53,7 @@ export const query = graphql`
                     childImageSharp {
                         fluid {
                             originalName
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp_tracedSVG
                         }
                     }
                 }

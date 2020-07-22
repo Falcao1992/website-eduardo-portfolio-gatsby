@@ -8,7 +8,7 @@ const Projects = ({allProjectsBanner}) => {
     return (
         <ContainerProjects id="projects">
             <BlockTitleText>
-                <SubtitleStyled>Mes Projects :</SubtitleStyled>
+                <SubtitleStyled>Mes Projets :</SubtitleStyled>
                 <TextExplanation>Voici un ensemble de mes realisations, pendant ma formation, ainsi que des projets personnels <br/>Cliquez sur un projet pour plus de detail</TextExplanation>
             </BlockTitleText>
             <ContainerProjectsBanner>

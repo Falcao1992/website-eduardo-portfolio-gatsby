@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useLayoutEffect} from 'react'
 import {Link} from 'gatsby'
 import styled from 'styled-components'
 import BackgroundImage from 'gatsby-background-image-es5'
@@ -12,6 +12,7 @@ export default ({className, namePage, bannerImage, slogan}) => {
     const [directionMoveHeader, setDirectionMoveHeader] = useState("DSC");
 
     useEffect(  () => {
+        console.log('1er layout effect')
         let timerOut = setTimeout(() => {
             setDirectionMoveHeader((directionMoveHeader) => directionMoveHeader === "DSC" ? "ASD" : "DSC")
         }, 0);
@@ -19,6 +20,7 @@ export default ({className, namePage, bannerImage, slogan}) => {
     },[]);
 
     useEffect(  () => {
+        console.log('2eme layout effect')
         let timer = setInterval(() => {
             setDirectionMoveHeader((directionMoveHeader) => directionMoveHeader === "DSC" ? "ASD" : "DSC")
             console.log('change direction header')
@@ -39,10 +41,11 @@ export default ({className, namePage, bannerImage, slogan}) => {
         return <Typewriter
             onInit={(typewriter) => {
                 typewriter
+                    .pauseFor(3000)
                     .changeDelay(100)
                     .typeString(`${slogan}`)
-                    .pauseFor(2500)
-                    .start();
+                    .start()
+
             }}
         />
     };

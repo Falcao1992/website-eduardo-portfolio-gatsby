@@ -38,7 +38,7 @@ const Footer = () => {
                 </BlockIcon>
             </BlockLogo>
             <BlockText>
-                <p>© Eduardo Lépine. Tous droits réservés</p>
+                <p>©2020 Eduardo Lépine, Tous droits réservés</p>
             </BlockText>
         </ContainerFooter>
     )

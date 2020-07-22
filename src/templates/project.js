@@ -65,7 +65,7 @@ export const query = graphql`
                     fileFirebase {
                         childImageSharp {
                             fluid {
-                                ...GatsbyImageSharpFluid
+                                ...GatsbyImageSharpFluid_withWebp_tracedSVG
                                 originalName
                         }
                     }
