@@ -34,7 +34,7 @@ const Footer = () => {
                     <a href="mailto:eduardo.lepine.pro@gmail.com" aria-label="mail"><Icon icon={mailRu} width="35" height="35"/></a>
                 </BlockIcon>
                 <BlockIcon>
-                    <a href="tel:0618478933" aria-label="phone"><Icon icon={mobilePhoneSolid} width="35" height="35"/></a>
+                    <a href="tel:0659069604" aria-label="phone"><Icon icon={mobilePhoneSolid} width="35" height="35"/></a>
                 </BlockIcon>
             </BlockLogo>
             <BlockText>
