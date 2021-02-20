@@ -15,9 +15,8 @@ const Projects = ({allProjectsBanner}) => {
                 {allProjectsBanner.filter(project => project.key !== "home").map(projectBanner => {
                     return (
                         <BlockProjectBanner key={projectBanner.key}>
-                            <Link to={`/${projectBanner.key}`}><ImgStyled fluid={projectBanner.fileFirebase.childImageSharp.fluid}
-                                                                          objectFit="cover"
-
+                            <Link to={`/${projectBanner.key}`}>
+                                <ImgStyled fluid={{...projectBanner.fileFirebase.childImageSharp.fluid, aspectRatio: 16 / 9 }}
                             /></Link>
                         </BlockProjectBanner>
                     )
@@ -63,6 +62,9 @@ const ContainerProjectsBanner = styled.div`
 
 const BlockProjectBanner = styled.div`
     width: 100%;
+    overflow:hidden;
+    justify-content: center;
+    
     @media screen and (min-width: 750px) {
         width: 50%;
         display: flex;

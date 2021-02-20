@@ -33,7 +33,7 @@ export default ({data, pageContext}) => {
                 <ContainerImg>
                     <a href={urlImage} target="_blank" rel="noopener noreferrer" aria-label="fullscreen">
                         <StyledImg alt={projectTitle}
-                                   fluid={fileFirebase.childImageSharp.fluid}/>
+                                   fluid={{...fileFirebase.childImageSharp.fluid, aspectRatio: 16 / 9 }}/>
                     </a>
                 </ContainerImg>
                 <BlockDescription>

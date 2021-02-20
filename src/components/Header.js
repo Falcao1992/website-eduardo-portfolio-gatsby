@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link} from 'gatsby'
 import styled from 'styled-components'
 import BackgroundImage from 'gatsby-background-image-es5'
