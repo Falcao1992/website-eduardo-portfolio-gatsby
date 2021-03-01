@@ -41,7 +41,7 @@ export default ({className, namePage, bannerImage, slogan}) => {
         return <Typewriter
             onInit={(typewriter) => {
                 typewriter
-                    .pauseFor(3000)
+                    .pauseFor(1500)
                     .changeDelay(100)
                     .typeString(`${slogan}`)
                     .start()
@@ -65,14 +65,8 @@ export default ({className, namePage, bannerImage, slogan}) => {
                 alt={namePage}
                 directionMoveHeader={directionMoveHeader}
                 fadeIn={false}
-                style={{
-                    // Defaults are overwrite-able by setting one or each of the following:
-                    //backgroundSize: '',
-                    backgroundPosition: `${directionMoveHeader === "DSC" ? "10% 100%" : "90% 0"}`,
-                    //backgroundRepeat: '',
-                }}
-            >
-                {console.log("render header")}
+                style={{backgroundPosition: `${directionMoveHeader === "DSC" ? "10% 100%" : "90% 0"}`,}}>
+                
                 <NavStyled>
                     <ListItemIconStyled>
                         <MenuIcon fontSize="large" onClick={handleBurger}/>

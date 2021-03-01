@@ -17,6 +17,9 @@ import styledComponents from '@iconify/icons-simple-icons/styled-components';
 import materialUi from '@iconify/icons-simple-icons/material-ui';
 import bootstrapIcon from '@iconify/icons-simple-icons/bootstrap';
 import graphqlIcon from '@iconify/icons-simple-icons/graphql';
+import tailwindSolid from '@iconify/icons-teenyicons/tailwind-solid';
+import vueIcon from '@iconify/icons-file-icons/vue';
+import nuxtJs from '@iconify/icons-cib/nuxt-js';
 
 
 const Skill = () => {
@@ -24,7 +27,7 @@ const Skill = () => {
     const [displayHelper, setDisplayHelper] = useState([]);
 
     const skills = [
-        { name: "React", icon: logoReact,  width: "40", height: "40", padding: "normal"},
+        { name: "React Js", icon: logoReact,  width: "40", height: "40", padding: "normal"},
         { name: "Css3", icon: logoCss3,  width: "40", height: "40", padding: "normal"},
         { name: "Html5", icon: logoHtml5,  width: "40", height: "40", padding: "normal"},
         { name: "Javascript", icon: logoJavascript,  width: "40", height: "40", padding: "normal"},
@@ -39,6 +42,9 @@ const Skill = () => {
         { name: "Material-Ui", icon: materialUi,  width: "40", height: "40", padding: "normal"},
         { name: "Bootstrap", icon: bootstrapIcon,  width: "40", height: "40", padding: "normal"},
         { name: "GraphQl", icon: graphqlIcon,  width: "40", height: "40", padding: "normal"},
+        { name: "Tailwind CSS", icon: tailwindSolid,  width: "40", height: "40", padding: "normal"},
+        { name: "Vue Js", icon: vueIcon,  width: "40", height: "40", padding: "normal"},
+        { name: "Nuxt Js", icon: nuxtJs,  width: "40", height: "40", padding: "normal"},
     ];
 
     const showHelperText = (e) => {
