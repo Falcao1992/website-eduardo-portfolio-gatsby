@@ -22,7 +22,7 @@ const About = () => (
 
             return (
                 <ContainerAbout id="about">
-                    <TitleHome>Développeur FulltStack junior React/Node</TitleHome>
+                    <TitleHome>Développeur FullStack junior React/Node</TitleHome>
                     <SubtitleStyled>A Propos de moi :</SubtitleStyled>
                     <ContainerBlockAbout>
                         <ImgStyled
@@ -33,7 +33,7 @@ const About = () => (
                             Je m’appelle Eduardo Lépine, je suis anciennement diplômé d’un Bac Pro en hôtellerie-restauration.
                             J'ai souhaité me réorienter dans un domaine qui me plait davantage.
                             C’est pourquoi, je me suis intéressé de plus près à ce que je voulais réellement, à mes réelles passions, et j'en ai découvert une : le développement web !
-                            Aujourd’hui, je suis très motivé et c'est pourquoi j'ai suivi pendant 9 mois la formation de Développeur FulltStack à la Wild Code School.
+                            Aujourd’hui, je suis très motivé et c'est pourquoi, en 2019, j'ai suivi pendant 9 mois la formation de Développeur FulltStack à la Wild Code School.
                             Vous découvrirez dans ce portfolio, mes compétences, mon parcours ainsi que les projets que j'ai pu réaliser.
                             Si vous avez des questions, n'hésitez pas à me contacter.</DescriptionStyled>
                     </ContainerBlockAbout>

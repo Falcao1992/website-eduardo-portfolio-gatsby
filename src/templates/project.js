@@ -1,11 +1,11 @@
-import React from "react";
-import {graphql} from "gatsby";
-import Layout from "../components/layout";
+import React from "react"
+import { graphql } from "gatsby"
+import Layout from "../components/layout"
 import Img from "gatsby-image"
-import styled from "styled-components";
-import Header from "../components/Header";
-import SEO from "../components/seo";
-import Carousel from "../components/Carousel/Carousel";
+import styled from "styled-components"
+import Header from "../components/Header"
+import SEO from "../components/seo"
+import Carousel from "../components/Carousel/Carousel"
 
 export default ({data, pageContext}) => {
     const {description, fileFirebase, key, projectTitle, technos, sourceNetlify, uid, urlImage} = data.allFirebaseData.nodes[0];
@@ -24,6 +24,12 @@ export default ({data, pageContext}) => {
         )
 
     };
+    
+    const parseDescription = () => {
+      return description.split("<br/>").map((part) => {
+        return <li style={{ padding: "10px 0" }}>{part}</li>
+      })
+    }
 
     return (
         <Layout>
@@ -41,7 +47,7 @@ export default ({data, pageContext}) => {
                 </ContainerImg>
                 <BlockDescription>
                     <h2>{projectTitle}</h2>
-                    <p>{description}</p>
+                    <ul>{parseDescription()}</ul>
                     {createTags(technos)}
                     {(sourceNetlify && sourceNetlify !== "none") &&
                     <SourceLink href={sourceNetlify} target="_blank"
@@ -68,7 +74,7 @@ export const query = graphql`
                     fileFirebase {
                         childImageSharp {
                             fluid {
-                                ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                ...GatsbyImageSharpFluid_withWebp
                                 originalName
                         }
                     }
@@ -123,10 +129,11 @@ const BlockDescription = styled.div`
       color: ${props => props.theme.colors.secondary};
       padding: 1rem 0;
     }  
-    p {
+    p, li {
       color: ${props => props.theme.colors.primary};
       text-align: justify;
       padding: 1rem 0;
+      list-style: none;
     }
 `;
 

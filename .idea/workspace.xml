@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff5b52b3-f99f-4786-bb1f-5ec5b7391c6e" name="Default Changelist" comment="" />
+    <list default="true" id="ff5b52b3-f99f-4786-bb1f-5ec5b7391c6e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/images/EduardoLepineCV.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Home/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home/About.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/images/EduardoLepineCv.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/EduardoLepineCv3.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/project.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,11 +23,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\eduar\WebstormProjects\website-eduardo-portfolio-gatsby\node_modules\prettier" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\eduar\WebstormProjects\website-eduardo-portfolio-gatsby\src\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\eduar\WebstormProjects\website-eduardo-portfolio-gatsby" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -32,10 +50,26 @@
       <option name="presentableId" value="Default" />
       <updated>1607455998360</updated>
       <workItem from="1607455999497" duration="637000" />
+      <workItem from="1638747606584" duration="6304000" />
+      <workItem from="1639051115542" duration="684000" />
+      <workItem from="1639229160081" duration="598000" />
+      <workItem from="1639491232111" duration="2541000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
