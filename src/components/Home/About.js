@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {StaticQuery, graphql} from "gatsby";
 import Img from "gatsby-image";
-import cv from "../../images/EduardoLepineCv.pdf"
+import cv from "../../images/EduardoLepineCV.pdf"
 
 const About = () => (
     <StaticQuery
