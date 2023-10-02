@@ -56,6 +56,8 @@ const ContactForm = () => {
         try {
             const response = await axios.post('/.netlify/functions/send-contact-email', formData);
 
+            console.log('response', response)
+
             if (response.status === 200) {
                 // La requête a réussi, vous pouvez traiter la réponse ici si nécessaire
                 console.log('E-mail sent successfully');
