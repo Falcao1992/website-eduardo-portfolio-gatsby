@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
-import {TextField} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import CheckIcon from '@material-ui/icons/Check';
-import app from "../../firebase";
 
 
 const ContactForm = () => {
@@ -12,28 +12,19 @@ const ContactForm = () => {
         mail: "",
         phoneNumber: "",
         message: "",
-        read: "false",
-        key: "",
-        dateMessage: ""
     };
     const [formData, setFormData] = useState(data);
     const [hasBeenSent, setHasBeenSent] = useState(false);
     const [missingField, setMissingField] = useState(false);
 
-    const {name, mail, phoneNumber, message, firstName} = formData;
+    const { name, mail, phoneNumber, message, firstName } = formData;
 
     const handleChange = (e) => {
-        setFormData({...formData, [e.target.id]: e.target.value});
+        setFormData({ ...formData, [e.target.id]: e.target.value });
     };
 
 
     const sendData = () => {
-        let newPostKey = app.database().ref("contactMessage").push().key;
-        formData.dateMessage = Date.now();
-        formData.key = newPostKey;
-        app.database().ref(`contactMessage`).update({
-            [newPostKey]: formData
-        });
         setHasBeenSent(true);
         setTimeout(() => {
             setHasBeenSent(false);
@@ -61,69 +52,83 @@ const ContactForm = () => {
         e.preventDefault();
         const result = await checkFormConform();
         console.log(result)
+
+        try {
+            const response = await axios.post('/.netlify/functions/send-contact-email', formData);
+
+            if (response.status === 200) {
+                // La requête a réussi, vous pouvez traiter la réponse ici si nécessaire
+                console.log('E-mail sent successfully');
+            } else {
+                // La requête a échoué
+                console.error('Failed to send e-mail');
+            }
+        } catch (error) {
+            console.error('An error occurred', error);
+        }
+        console.log('submit handle')
+
     };
 
     return (
         <ContainerContact id="contact">
             <SubtitleStyled>Me Contacter :</SubtitleStyled>
-            {hasBeenSent && <ToastHasBeenSent><CheckIconStyled/> Votre message à bien été envoyé !</ToastHasBeenSent>}
+            {hasBeenSent && <ToastHasBeenSent><CheckIconStyled /> Votre message à bien été envoyé !</ToastHasBeenSent>}
             <FormStyled onSubmit={handleSubmit} autoComplete="off">
-
-
                 <ContainerMultipleField>
                     <TextFieldStyled onChange={handleChange}
-                                     value={name}
-                                     space="small"
-                                     id="name"
-                                     autoComplete="off"
-                                     label="Nom *" variant="filled"
-                                     helperText={missingField && name === "" ? <small>Veuillez indiquer votre Nom svp
-                                         !</small> : name !== "" && missingField ?
-                                         <CorrectField>bien rempli*</CorrectField> : false}
-                                     error={missingField && name === "" && true}
+                        value={name}
+                        space="small"
+                        id="name"
+                        autoComplete="off"
+                        label="Nom *" variant="filled"
+                        helperText={missingField && name === "" ? <small>Veuillez indiquer votre Nom svp
+                            !</small> : name !== "" && missingField ?
+                            <CorrectField>bien rempli*</CorrectField> : false}
+                        error={missingField && name === "" && true}
                     />
 
                     <TextFieldStyled onChange={handleChange}
-                                     space="small"
-                                     value={firstName}
-                                     id="firstName"
-                                     label="Prénom *" variant="filled"
-                                     helperText={missingField && firstName === "" ?
-                                         <small>Veuillez indiquer votre Prénom svp
-                                             !</small> : firstName !== "" && missingField ?
-                                             <CorrectField>bien rempli*</CorrectField> : false}
-                                     error={missingField && firstName === "" && true}
+                        space="small"
+                        value={firstName}
+                        id="firstName"
+                        label="Prénom *" variant="filled"
+                        helperText={missingField && firstName === "" ?
+                            <small>Veuillez indiquer votre Prénom svp
+                                !</small> : firstName !== "" && missingField ?
+                                <CorrectField>bien rempli*</CorrectField> : false}
+                        error={missingField && firstName === "" && true}
                     />
 
                 </ContainerMultipleField>
 
                 <TextFieldStyled onChange={handleChange}
-                                 value={message}
-                                 space="large"
-                                 multiline
-                                 rows={5}
-                                 id="message"
-                                 label="message *" variant="filled"
-                                 helperText={missingField && message === "" ?
-                                     <small>Veuillez rentrer un message svp !</small> : message !== "" && missingField ?
-                                         <CorrectField>Correct*</CorrectField> : false}
-                                 error={missingField && message === "" && true}
+                    value={message}
+                    space="large"
+                    multiline
+                    rows={5}
+                    id="message"
+                    label="message *" variant="filled"
+                    helperText={missingField && message === "" ?
+                        <small>Veuillez rentrer un message svp !</small> : message !== "" && missingField ?
+                            <CorrectField>Correct*</CorrectField> : false}
+                    error={missingField && message === "" && true}
                 />
 
                 <TextFieldStyled onChange={handleChange} value={mail}
-                                 type="mail"
-                                 id="mail"
-                                 label="Email *" variant="filled"
-                                 helperText={missingField && mail === "" ?
-                                     <small>Veuillez rentrer une adresse mail valide
-                                         !</small> : mail !== "" && missingField ?
-                                         <CorrectField>bien rempli*</CorrectField> : false}
-                                 error={missingField && mail === "" && true}
+                    type="mail"
+                    id="mail"
+                    label="Email *" variant="filled"
+                    helperText={missingField && mail === "" ?
+                        <small>Veuillez rentrer une adresse mail valide
+                            !</small> : mail !== "" && missingField ?
+                            <CorrectField>bien rempli*</CorrectField> : false}
+                    error={missingField && mail === "" && true}
                 />
 
                 <TextFieldStyled onChange={handleChange} value={phoneNumber}
-                                 id="phoneNumber"
-                                 label="Numéro de téléphone (Falcutatif)" variant="filled"
+                    id="phoneNumber"
+                    label="Numéro de téléphone (Falcutatif)" variant="filled"
                 />
 
                 <ButtonSendMessage type="submit">Envoyer votre message</ButtonSendMessage>
@@ -187,21 +192,21 @@ const TextFieldStyled = styled(TextField)`
     width: ${props => props.space === "small" && "calc(50% - .6rem)"};  
     // couleur du label si selectionné
     .Mui-focused { 
-        color: ${props =>props.theme.colors.secondary} !important;
+        color: ${props => props.theme.colors.secondary} !important;
     }   
     // couleur du label si pas selectionné
     .MuiFormLabel-root {
-        color: ${props =>props.theme.colors.primary}
+        color: ${props => props.theme.colors.primary}
     }
     // Color Underline
     .MuiFilledInput-underline:after {
-        border-bottom: 2px solid ${props =>props.theme.colors.secondary};
+        border-bottom: 2px solid ${props => props.theme.colors.secondary};
         transition: transform 900ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
     }
     
     // All Input Filled
     .MuiFilledInput-root {
-        background-color: ${props =>props.theme.colors.lightDark}; 
+        background-color: ${props => props.theme.colors.lightDark}; 
     }
 
     .MuiInputBase-root {
@@ -221,7 +226,7 @@ const TextFieldStyled = styled(TextField)`
     }
     // input's color when autofill active
     input:-webkit-autofill {
-        -webkit-text-fill-color: ${props =>props.theme.colors.secondary} !important;
+        -webkit-text-fill-color: ${props => props.theme.colors.secondary} !important;
     } 
           
 `;
