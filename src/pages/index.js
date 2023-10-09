@@ -19,7 +19,6 @@ const IndexPage = ({data}) => {
     const bannerImageHome = data.banner.nodes[0].fileFirebase.childImageSharp.fluid;
     const allProjectsBanner = data.allProjectsBanner.nodes;
 
-    console.log("allProjectsBanner", allProjectsBanner);
 
     const redirectArrowUp = () => {
         window.scrollTo({

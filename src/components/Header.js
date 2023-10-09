@@ -12,7 +12,6 @@ export default ({className, namePage, bannerImage, slogan}) => {
     const [directionMoveHeader, setDirectionMoveHeader] = useState("DSC");
 
     useEffect(  () => {
-        console.log('1er layout effect')
         let timerOut = setTimeout(() => {
             setDirectionMoveHeader((directionMoveHeader) => directionMoveHeader === "DSC" ? "ASD" : "DSC")
         }, 0);
@@ -20,7 +19,6 @@ export default ({className, namePage, bannerImage, slogan}) => {
     },[]);
 
     useEffect(  () => {
-        console.log('2eme layout effect')
         let timer = setInterval(() => {
             setDirectionMoveHeader((directionMoveHeader) => directionMoveHeader === "DSC" ? "ASD" : "DSC")
             console.log('change direction header')

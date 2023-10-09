@@ -19,7 +19,7 @@ exports.handler = async (event, context, callback) => {
     });
 
     let info = await transporter.sendMail({
-        from: `${mail} <${process.env.GATSBY_APP_EMAIL_SENDER}>`,
+        from: process.env.GATSBY_APP_EMAIL_SENDER,
   
         to: process.env.GATSBY_APP_EMAIL_TO,
         subject: `from ${name + " " + firstName}`,

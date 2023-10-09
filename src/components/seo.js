@@ -37,11 +37,6 @@ function SEO({description, lang, meta, keywords, title}) {
     const metaDescription = description || site.siteMetadata.description;
     const image = imageSeo && imageSeo.src ? `${site.siteMetadata.siteUrl}${imageSeo.src}` : null;
 
-    console.log(site.siteMetadata.siteUrl, "site.siteMetadata.siteUrl")
-    console.log(image, "image")
-    console.log(imageSeo, "imageSeo")
-    console.log(imageSeo.src, "imageSeo.src")
-
     return (
         <Helmet
             htmlAttributes={{
